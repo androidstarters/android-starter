@@ -8,7 +8,6 @@ import javax.inject.Singleton;
 
 import io.mvpstarter.sample.injection.ApplicationContext;
 
-
 @Singleton
 public class PreferencesHelper {
 
@@ -24,5 +23,4 @@ public class PreferencesHelper {
     public void clear() {
         mPref.edit().clear().apply();
     }
-
 }

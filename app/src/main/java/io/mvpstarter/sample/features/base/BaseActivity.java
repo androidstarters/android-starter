@@ -17,12 +17,10 @@ import timber.log.Timber;
 
 /**
  * Abstract activity that every other Activity in this application must implement. It provides the
- * following functionality:
- * - Handles creation of Dagger components and makes sure that instances of
- * ConfigPersistentComponent are kept across configuration changes.
- * - Set up and handles a GoogleApiClient instance that can be used to access the Google sign in
- * api.
- * - Handles signing out when an authentication error event is received.
+ * following functionality: - Handles creation of Dagger components and makes sure that instances of
+ * ConfigPersistentComponent are kept across configuration changes. - Set up and handles a
+ * GoogleApiClient instance that can be used to access the Google sign in api. - Handles signing out
+ * when an authentication error event is received.
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -41,14 +39,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         // Create the ActivityComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
-        mActivityId = savedInstanceState != null ?
-                savedInstanceState.getLong(KEY_ACTIVITY_ID) : NEXT_ID.getAndIncrement();
+        mActivityId =
+                savedInstanceState != null
+                        ? savedInstanceState.getLong(KEY_ACTIVITY_ID)
+                        : NEXT_ID.getAndIncrement();
         ConfigPersistentComponent configPersistentComponent;
         if (sComponentsArray.get(mActivityId) == null) {
             Timber.i("Creating new ConfigPersistentComponent id=%d", mActivityId);
-            configPersistentComponent = DaggerConfigPersistentComponent.builder()
-                    .applicationComponent(MvpStarterApplication.get(this).getComponent())
-                    .build();
+            configPersistentComponent =
+                    DaggerConfigPersistentComponent.builder()
+                            .applicationComponent(MvpStarterApplication.get(this).getComponent())
+                            .build();
             sComponentsArray.put(mActivityId, configPersistentComponent);
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", mActivityId);
@@ -89,5 +90,4 @@ public abstract class BaseActivity extends AppCompatActivity {
     public ActivityComponent activityComponent() {
         return mActivityComponent;
     }
-
 }

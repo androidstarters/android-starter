@@ -24,20 +24,15 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by ravindra on 24/12/16.
- */
+/** Created by ravindra on 24/12/16. */
 @RunWith(MockitoJUnitRunner.class)
 public class DetailPresenterTest {
 
-    @Mock
-    DetailMvpView mMockDetailMvpView;
-    @Mock
-    DataManager mMockDataManager;
-    private DetailPresenter mDetailPresenter;
-
     @Rule
     public final RxSchedulersOverrideRule mOverrideSchedulersRule = new RxSchedulersOverrideRule();
+    @Mock DetailMvpView mMockDetailMvpView;
+    @Mock DataManager mMockDataManager;
+    private DetailPresenter mDetailPresenter;
 
     @Before
     public void setUp() {
@@ -53,8 +48,7 @@ public class DetailPresenterTest {
     @Test
     public void getPokemonDetailReturnsPokemon() throws Exception {
         Pokemon pokemon = TestDataFactory.makePokemon("id");
-        when(mMockDataManager.getPokemon(anyString()))
-                .thenReturn(Single.just(pokemon));
+        when(mMockDataManager.getPokemon(anyString())).thenReturn(Single.just(pokemon));
 
         mDetailPresenter.getPokemon(anyString());
 
@@ -65,8 +59,7 @@ public class DetailPresenterTest {
 
     @Test
     public void getPokemonDetailReturnsError() throws Exception {
-        when(mMockDataManager.getPokemon("id"))
-                .thenReturn(Single.error(new RuntimeException()));
+        when(mMockDataManager.getPokemon("id")).thenReturn(Single.error(new RuntimeException()));
 
         mDetailPresenter.getPokemon("id");
 
@@ -74,5 +67,4 @@ public class DetailPresenterTest {
         verify(mMockDetailMvpView).showError(any(Throwable.class));
         verify(mMockDetailMvpView, never()).showPokemon(any(Pokemon.class));
     }
-
 }

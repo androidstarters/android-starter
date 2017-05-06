@@ -14,10 +14,9 @@ import io.mvpstarter.sample.data.DataManager;
 
 /**
  * Test rule that creates and sets a Dagger TestComponent into the application overriding the
- * existing application component.
- * Use this rule in your test case in order for the app to use mock dependencies.
- * It also exposes some of the dependencies so they can be easily accessed from the tests, e.g. to
- * stub mocks etc.
+ * existing application component. Use this rule in your test case in order for the app to use mock
+ * dependencies. It also exposes some of the dependencies so they can be easily accessed from the
+ * tests, e.g. to stub mocks etc.
  */
 public class TestComponentRule implements TestRule {
 
@@ -27,9 +26,10 @@ public class TestComponentRule implements TestRule {
     public TestComponentRule(Context context) {
         mContext = context;
         MvpStarterApplication application = MvpStarterApplication.get(context);
-        mTestComponent = DaggerTestComponent.builder()
-                .applicationTestModule(new ApplicationTestModule(application))
-                .build();
+        mTestComponent =
+                DaggerTestComponent.builder()
+                        .applicationTestModule(new ApplicationTestModule(application))
+                        .build();
     }
 
     public TestComponent getTestComponent() {

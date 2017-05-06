@@ -8,10 +8,9 @@ import javax.inject.Scope;
 import io.mvpstarter.sample.injection.component.ConfigPersistentComponent;
 
 /**
- * A scoping annotation to permit dependencies conform to the life of the
- * {@link ConfigPersistentComponent}
+ * A scoping annotation to permit dependencies conform to the life of the {@link
+ * ConfigPersistentComponent}
  */
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ConfigPersistent {
-}
+public @interface ConfigPersistent {}

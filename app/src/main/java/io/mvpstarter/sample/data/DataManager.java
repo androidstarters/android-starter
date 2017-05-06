@@ -20,7 +20,8 @@ public class DataManager {
     }
 
     public Single<List<String>> getPokemonList(int limit) {
-        return mMvpStarterService.getPokemonList(limit)
+        return mMvpStarterService
+                .getPokemonList(limit)
                 .toObservable()
                 .flatMapIterable(namedResources -> namedResources.results)
                 .map(namedResource -> namedResource.name)
@@ -30,5 +31,4 @@ public class DataManager {
     public Single<Pokemon> getPokemon(String name) {
         return mMvpStarterService.getPokemon(name);
     }
-
 }

@@ -27,19 +27,23 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
 
     public static final String EXTRA_POKEMON_NAME = "EXTRA_POKEMON_NAME";
 
-    @Inject
-    DetailPresenter mDetailPresenter;
+    @Inject DetailPresenter mDetailPresenter;
 
     @BindView(R.id.view_error)
     ErrorView mErrorView;
+
     @BindView(R.id.image_pokemon)
     ImageView mPokemonImage;
+
     @BindView(R.id.progress)
     ProgressBar mProgress;
+
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+
     @BindView(R.id.layout_stats)
     LinearLayout mStatLayout;
+
     @BindView(R.id.layout_pokemon)
     View mPokemonLayout;
 
@@ -80,9 +84,7 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
     @Override
     public void showPokemon(Pokemon pokemon) {
         if (pokemon.sprites != null && pokemon.sprites.frontDefault != null) {
-            Glide.with(this)
-                    .load(pokemon.sprites.frontDefault)
-                    .into(mPokemonImage);
+            Glide.with(this).load(pokemon.sprites.frontDefault).into(mPokemonImage);
         }
         mPokemonLayout.setVisibility(View.VISIBLE);
     }

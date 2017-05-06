@@ -35,9 +35,9 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
 
     @Override
     public PokemonViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater
-                .from(parent.getContext())
-                .inflate(R.layout.item_pokemon, parent, false);
+        View view =
+                LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_pokemon, parent, false);
         return new PokemonViewHolder(view);
     }
 
@@ -45,8 +45,8 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
     public void onBindViewHolder(PokemonViewHolder holder, int position) {
         String pokemon = mPokemon.get(position);
         holder.mPokemon = pokemon;
-        holder.nameText.setText(String.format("%s%s"
-                , pokemon.substring(0, 1).toUpperCase(), pokemon.substring(1)));
+        holder.nameText.setText(
+                String.format("%s%s", pokemon.substring(0, 1).toUpperCase(), pokemon.substring(1)));
     }
 
     @Override
@@ -61,16 +61,17 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
     class PokemonViewHolder extends RecyclerView.ViewHolder {
 
         String mPokemon;
+
         @BindView(R.id.text_name)
         TextView nameText;
 
         PokemonViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(v -> {
-                if (mClickListener != null) mClickListener.onPokemonClick(mPokemon);
-            });
+            itemView.setOnClickListener(
+                    v -> {
+                        if (mClickListener != null) mClickListener.onPokemonClick(mPokemon);
+                    });
         }
     }
-
 }

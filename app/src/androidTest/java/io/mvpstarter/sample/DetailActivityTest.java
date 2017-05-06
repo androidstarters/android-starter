@@ -35,8 +35,7 @@ public class DetailActivityTest {
 
     // TestComponentRule needs to go first to make sure the Dagger ApplicationTestComponent is set
     // in the Application before any Activity is launched.
-    @Rule
-    public TestRule chain = RuleChain.outerRule(component).around(main);
+    @Rule public TestRule chain = RuleChain.outerRule(component).around(main);
 
     @Test
     public void checkPokemonDisplays() {
@@ -46,8 +45,7 @@ public class DetailActivityTest {
                 DetailActivity.getStartIntent(InstrumentationRegistry.getContext(), pokemon.name));
 
         for (Statistic stat : pokemon.stats) {
-            onView(withText(stat.stat.name))
-                    .check(matches(isDisplayed()));
+            onView(withText(stat.stat.name)).check(matches(isDisplayed()));
         }
     }
 
@@ -61,8 +59,6 @@ public class DetailActivityTest {
     }
 
     public void stubDataManagerGetPokemon(Single<Pokemon> single) {
-        when(component.getMockDataManager().getPokemon(anyString()))
-                .thenReturn(single);
+        when(component.getMockDataManager().getPokemon(anyString())).thenReturn(single);
     }
-
 }

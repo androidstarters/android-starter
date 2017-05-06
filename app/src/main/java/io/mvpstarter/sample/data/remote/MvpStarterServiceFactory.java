@@ -14,8 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
 /**
- * Provide "make" methods to create instances of {@link MvpStarterService}
- * and its related dependencies, such as OkHttpClient, Gson, etc.
+ * Provide "make" methods to create instances of {@link MvpStarterService} and its related
+ * dependencies, such as OkHttpClient, Gson, etc.
  */
 public class MvpStarterServiceFactory {
 
@@ -24,12 +24,13 @@ public class MvpStarterServiceFactory {
     }
 
     private static MvpStarterService makeMvpStarterService(Gson gson) {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BuildConfig.POKEAPI_API_URL)
-                .client(makeOkHttpClient())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
+        Retrofit retrofit =
+                new Retrofit.Builder()
+                        .baseUrl(BuildConfig.POKEAPI_API_URL)
+                        .client(makeOkHttpClient())
+                        .addConverterFactory(GsonConverterFactory.create(gson))
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .build();
         return retrofit.create(MvpStarterService.class);
     }
 
@@ -38,8 +39,8 @@ public class MvpStarterServiceFactory {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
 
         if (BuildConfig.DEBUG) {
-            HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message
-                    -> Timber.d(message));
+            HttpLoggingInterceptor loggingInterceptor =
+                    new HttpLoggingInterceptor(message -> Timber.d(message));
             loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             httpClientBuilder.addInterceptor(loggingInterceptor);
             httpClientBuilder.addNetworkInterceptor(new StethoInterceptor());
