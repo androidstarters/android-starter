@@ -16,7 +16,7 @@ import io.mvpstarter.sample.common.TestComponentRule;
 import io.mvpstarter.sample.common.TestDataFactory;
 import io.mvpstarter.sample.data.model.NamedResource;
 import io.mvpstarter.sample.data.model.Pokemon;
-import io.mvpstarter.sample.ui.main.MainActivity;
+import io.mvpstarter.sample.features.main.MainActivity;
 import io.mvpstarter.sample.util.ErrorTestUtil;
 import io.reactivex.Single;
 

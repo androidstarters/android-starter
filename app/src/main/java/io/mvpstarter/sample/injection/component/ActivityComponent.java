@@ -3,9 +3,9 @@ package io.mvpstarter.sample.injection.component;
 import dagger.Subcomponent;
 import io.mvpstarter.sample.injection.PerActivity;
 import io.mvpstarter.sample.injection.module.ActivityModule;
-import io.mvpstarter.sample.ui.base.BaseActivity;
-import io.mvpstarter.sample.ui.detail.DetailActivity;
-import io.mvpstarter.sample.ui.main.MainActivity;
+import io.mvpstarter.sample.features.base.BaseActivity;
+import io.mvpstarter.sample.features.detail.DetailActivity;
+import io.mvpstarter.sample.features.main.MainActivity;
 
 @PerActivity
 @Subcomponent(modules = ActivityModule.class)
