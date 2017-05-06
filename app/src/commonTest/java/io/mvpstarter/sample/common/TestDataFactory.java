@@ -11,8 +11,8 @@ import io.mvpstarter.sample.data.model.Sprites;
 import io.mvpstarter.sample.data.model.Statistic;
 
 /**
- * Factory class that makes instances of data models with random field values.
- * The aim of this class is to help setting up test fixtures.
+ * Factory class that makes instances of data models with random field values. The aim of this class
+ * is to help setting up test fixtures.
  */
 public class TestDataFactory {
 

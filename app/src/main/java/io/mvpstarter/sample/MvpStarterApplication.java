@@ -32,9 +32,10 @@ public class MvpStarterApplication extends Application {
 
     public ApplicationComponent getComponent() {
         if (mApplicationComponent == null) {
-            mApplicationComponent = DaggerApplicationComponent.builder()
-                    .applicationModule(new ApplicationModule(this))
-                    .build();
+            mApplicationComponent =
+                    DaggerApplicationComponent.builder()
+                            .applicationModule(new ApplicationModule(this))
+                            .build();
         }
         return mApplicationComponent;
     }

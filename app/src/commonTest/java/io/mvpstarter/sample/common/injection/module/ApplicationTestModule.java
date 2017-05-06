@@ -14,8 +14,8 @@ import io.mvpstarter.sample.injection.ApplicationContext;
 import static org.mockito.Mockito.mock;
 
 /**
- * Provides application-level dependencies for an app running on a testing environment
- * This allows injecting mocks if necessary.
+ * Provides application-level dependencies for an app running on a testing environment This allows
+ * injecting mocks if necessary.
  */
 @Module
 public class ApplicationTestModule {
@@ -37,10 +37,7 @@ public class ApplicationTestModule {
         return mApplication;
     }
 
-    /*************
-     * MOCKS
-     *************/
-
+    /** *********** MOCKS *********** */
     @Provides
     @Singleton
     DataManager providesDataManager() {
@@ -52,5 +49,4 @@ public class ApplicationTestModule {
     MvpStarterService provideMvpBoilerplateService() {
         return mock(MvpStarterService.class);
     }
-
 }

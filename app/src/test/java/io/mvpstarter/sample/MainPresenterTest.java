@@ -25,20 +25,15 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/**
- * Created by ravindra on 24/12/16.
- */
+/** Created by ravindra on 24/12/16. */
 @RunWith(MockitoJUnitRunner.class)
 public class MainPresenterTest {
 
-    @Mock
-    MainMvpView mMockMainMvpView;
-    @Mock
-    DataManager mMockDataManager;
-    private MainPresenter mMainPresenter;
-
     @Rule
     public final RxSchedulersOverrideRule mOverrideSchedulersRule = new RxSchedulersOverrideRule();
+    @Mock MainMvpView mMockMainMvpView;
+    @Mock DataManager mMockDataManager;
+    private MainPresenter mMainPresenter;
 
     @Before
     public void setUp() {
@@ -54,21 +49,18 @@ public class MainPresenterTest {
     @Test
     public void getPokemonReturnsPokemonNames() throws Exception {
         List<String> pokemonList = TestDataFactory.makePokemonNamesList(10);
-        when(mMockDataManager.getPokemonList(10))
-                .thenReturn(Single.just(pokemonList));
+        when(mMockDataManager.getPokemonList(10)).thenReturn(Single.just(pokemonList));
 
         mMainPresenter.getPokemon(10);
 
         verify(mMockMainMvpView, times(2)).showProgress(anyBoolean());
         verify(mMockMainMvpView).showPokemon(pokemonList);
         verify(mMockMainMvpView, never()).showError(new RuntimeException());
-
     }
 
     @Test
     public void getPokemonReturnsError() throws Exception {
-        when(mMockDataManager.getPokemonList(10))
-                .thenReturn(Single.error(new RuntimeException()));
+        when(mMockDataManager.getPokemonList(10)).thenReturn(Single.error(new RuntimeException()));
 
         mMainPresenter.getPokemon(10);
 
@@ -76,5 +68,4 @@ public class MainPresenterTest {
         verify(mMockMainMvpView).showError(any(Throwable.class));
         verify(mMockMainMvpView, never()).showPokemon(ArgumentMatchers.anyList());
     }
-
 }

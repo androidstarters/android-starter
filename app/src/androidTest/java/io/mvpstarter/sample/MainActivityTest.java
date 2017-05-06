@@ -40,8 +40,7 @@ public class MainActivityTest {
 
     // TestComponentRule needs to go first to make sure the Dagger ApplicationTestComponent is set
     // in the Application before any Activity is launched.
-    @Rule
-    public TestRule chain = RuleChain.outerRule(mComponent).around(mMain);
+    @Rule public TestRule chain = RuleChain.outerRule(mComponent).around(mMain);
 
     @Test
     public void checkPokemonsDisplay() {
@@ -51,8 +50,7 @@ public class MainActivityTest {
         mMain.launchActivity(null);
 
         for (NamedResource pokemonName : namedResourceList) {
-            onView(withText(pokemonName.name))
-                    .check(matches(isDisplayed()));
+            onView(withText(pokemonName.name)).check(matches(isDisplayed()));
         }
     }
 
@@ -64,11 +62,9 @@ public class MainActivityTest {
         stubDataManagerGetPokemon(Single.just(TestDataFactory.makePokemon("id")));
         mMain.launchActivity(null);
 
-        onView(withText(pokemonList.get(0)))
-                .perform(click());
+        onView(withText(pokemonList.get(0))).perform(click());
 
-        onView(withId(R.id.image_pokemon))
-                .check(matches(isDisplayed()));
+        onView(withId(R.id.image_pokemon)).check(matches(isDisplayed()));
     }
 
     @Test
@@ -79,13 +75,10 @@ public class MainActivityTest {
     }
 
     public void stubDataManagerGetPokemonList(Single<List<String>> single) {
-        when(mComponent.getMockDataManager().getPokemonList(anyInt()))
-                .thenReturn(single);
+        when(mComponent.getMockDataManager().getPokemonList(anyInt())).thenReturn(single);
     }
 
     public void stubDataManagerGetPokemon(Single<Pokemon> single) {
-        when(mComponent.getMockDataManager().getPokemon(anyString()))
-                .thenReturn(single);
+        when(mComponent.getMockDataManager().getPokemon(anyString())).thenReturn(single);
     }
-
 }

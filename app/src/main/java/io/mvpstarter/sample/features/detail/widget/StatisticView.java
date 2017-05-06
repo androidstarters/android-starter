@@ -19,6 +19,7 @@ public class StatisticView extends RelativeLayout {
 
     @BindView(R.id.text_name)
     TextView mNameText;
+
     @BindView(R.id.progress_stat)
     ProgressBar mStatProgress;
 
@@ -50,8 +51,9 @@ public class StatisticView extends RelativeLayout {
 
     @SuppressLint("SetTextI18n")
     public void setStat(Statistic statistic) {
-        mNameText.setText(statistic.stat.name.substring(0, 1).toUpperCase() +
-                statistic.stat.name.substring(1));
+        mNameText.setText(
+                statistic.stat.name.substring(0, 1).toUpperCase()
+                        + statistic.stat.name.substring(1));
         mStatProgress.setProgress(statistic.baseStat);
     }
 }

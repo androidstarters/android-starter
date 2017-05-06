@@ -13,5 +13,4 @@ public interface DetailMvpView extends MvpView {
     void showProgress(boolean show);
 
     void showError(Throwable error);
-
 }

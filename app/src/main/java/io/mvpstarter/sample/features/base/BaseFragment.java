@@ -39,15 +39,18 @@ public abstract class BaseFragment extends Fragment {
 
         // Create the FragmentComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
-        mFragmentId = savedInstanceState != null ?
-                savedInstanceState.getLong(KEY_FRAGMENT_ID) : NEXT_ID.getAndIncrement();
+        mFragmentId =
+                savedInstanceState != null
+                        ? savedInstanceState.getLong(KEY_FRAGMENT_ID)
+                        : NEXT_ID.getAndIncrement();
         ConfigPersistentComponent configPersistentComponent;
         if (sComponentsArray.get(mFragmentId) == null) {
             Timber.i("Creating new ConfigPersistentComponent id=%d", mFragmentId);
-            configPersistentComponent = DaggerConfigPersistentComponent.builder()
-                    .applicationComponent(MvpStarterApplication.get(
-                            getActivity()).getComponent())
-                    .build();
+            configPersistentComponent =
+                    DaggerConfigPersistentComponent.builder()
+                            .applicationComponent(
+                                    MvpStarterApplication.get(getActivity()).getComponent())
+                            .build();
             sComponentsArray.put(mFragmentId, configPersistentComponent);
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", mFragmentId);
@@ -58,8 +61,10 @@ public abstract class BaseFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(
+            LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
         ButterKnife.bind(this, view);
         return view;

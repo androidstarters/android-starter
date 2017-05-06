@@ -5,8 +5,8 @@ import rx.Subscription;
 import rx.plugins.RxJavaObservableExecutionHook;
 
 /**
- * RxJava Observable execution hook that handles updating the active subscription
- * count for a given Espresso RxIdlingResource.
+ * RxJava Observable execution hook that handles updating the active subscription count for a given
+ * Espresso RxIdlingResource.
  */
 public class RxIdlingExecutionHook extends RxJavaObservableExecutionHook {
 

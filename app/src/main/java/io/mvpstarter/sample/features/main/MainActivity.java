@@ -19,24 +19,26 @@ import io.mvpstarter.sample.features.common.ErrorView;
 import io.mvpstarter.sample.features.detail.DetailActivity;
 import timber.log.Timber;
 
-public class MainActivity extends BaseActivity implements MainMvpView, PokemonAdapter.ClickListener,
-        ErrorView.ErrorListener {
+public class MainActivity extends BaseActivity
+        implements MainMvpView, PokemonAdapter.ClickListener, ErrorView.ErrorListener {
 
     private static final int POKEMON_COUNT = 20;
 
-    @Inject
-    PokemonAdapter mPokemonAdapter;
-    @Inject
-    MainPresenter mMainPresenter;
+    @Inject PokemonAdapter mPokemonAdapter;
+    @Inject MainPresenter mMainPresenter;
 
     @BindView(R.id.view_error)
     ErrorView mErrorView;
+
     @BindView(R.id.progress)
     ProgressBar mProgress;
+
     @BindView(R.id.recycler_pokemon)
     RecyclerView mPokemonRecycler;
+
     @BindView(R.id.swipe_to_refresh)
     SwipeRefreshLayout mSwipeRefreshLayout;
+
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 

@@ -7,12 +7,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 import timber.log.Timber;
 
 /**
- * Espresso Idling resource that handles waiting for RxJava Observables executions.
- * This class must be used with RxIdlingExecutionHook.
- * Before registering this idling resource you must:
- * 1. Create an instance of RxIdlingExecutionHook by passing an instance of this class.
- * 2. Register RxIdlingExecutionHook with the RxJavaPlugins using registerObservableExecutionHook()
- * 3. Register this idle resource with Espresso using Espresso.registerIdlingResources()
+ * Espresso Idling resource that handles waiting for RxJava Observables executions. This class must
+ * be used with RxIdlingExecutionHook. Before registering this idling resource you must: 1. Create
+ * an instance of RxIdlingExecutionHook by passing an instance of this class. 2. Register
+ * RxIdlingExecutionHook with the RxJavaPlugins using registerObservableExecutionHook() 3. Register
+ * this idle resource with Espresso using Espresso.registerIdlingResources()
  */
 public class RxIdlingResource implements IdlingResource {
 
@@ -47,5 +46,4 @@ public class RxIdlingResource implements IdlingResource {
             mResourceCallback.onTransitionToIdle();
         }
     }
-
 }

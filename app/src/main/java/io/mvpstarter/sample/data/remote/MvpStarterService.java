@@ -1,6 +1,5 @@
 package io.mvpstarter.sample.data.remote;
 
-
 import io.mvpstarter.sample.data.model.Pokemon;
 import io.mvpstarter.sample.data.model.PokemonListResponse;
 import io.reactivex.Single;
@@ -15,5 +14,4 @@ public interface MvpStarterService {
 
     @GET("pokemon/{name}")
     Single<Pokemon> getPokemon(@Path("name") String name);
-
 }

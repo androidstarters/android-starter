@@ -8,9 +8,8 @@ import io.mvpstarter.sample.util.RxIdlingResource;
 import rx.plugins.RxJavaPlugins;
 
 /**
- * Runner that registers a Espresso Indling resource that handles waiting for
- * RxJava Observables to finish.
- * WARNING - Using this runner will block the tests if the application uses long-lived hot
+ * Runner that registers a Espresso Indling resource that handles waiting for RxJava Observables to
+ * finish. WARNING - Using this runner will block the tests if the application uses long-lived hot
  * Observables such us event buses, etc.
  */
 public class RxAndroidJUnitRunner extends UnlockDeviceAndroidJUnitRunner {

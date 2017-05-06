@@ -18,11 +18,13 @@ import io.reactivex.Single;
 import io.reactivex.SingleSource;
 import io.reactivex.SingleTransformer;
 
-/**
- * Created by lam on 2/6/17.
- */
-
-public abstract class BaseScheduler<T> implements ObservableTransformer<T, T>, SingleTransformer<T, T>, MaybeTransformer<T, T>, CompletableTransformer, FlowableTransformer<T, T> {
+/** Created by lam on 2/6/17. */
+public abstract class BaseScheduler<T>
+        implements ObservableTransformer<T, T>,
+                SingleTransformer<T, T>,
+                MaybeTransformer<T, T>,
+                CompletableTransformer,
+                FlowableTransformer<T, T> {
 
     private final Scheduler mSubscribeOnScheduler;
 
@@ -35,31 +37,26 @@ public abstract class BaseScheduler<T> implements ObservableTransformer<T, T>, S
 
     @Override
     public CompletableSource apply(Completable upstream) {
-        return upstream.subscribeOn(mSubscribeOnScheduler)
-                .observeOn(mObserveOnScheduler);
+        return upstream.subscribeOn(mSubscribeOnScheduler).observeOn(mObserveOnScheduler);
     }
 
     @Override
     public Publisher<T> apply(Flowable<T> upstream) {
-        return upstream.subscribeOn(mSubscribeOnScheduler)
-                .observeOn(mObserveOnScheduler);
+        return upstream.subscribeOn(mSubscribeOnScheduler).observeOn(mObserveOnScheduler);
     }
 
     @Override
     public MaybeSource<T> apply(Maybe<T> upstream) {
-        return upstream.subscribeOn(mSubscribeOnScheduler)
-                .observeOn(mObserveOnScheduler);
+        return upstream.subscribeOn(mSubscribeOnScheduler).observeOn(mObserveOnScheduler);
     }
 
     @Override
     public ObservableSource<T> apply(Observable<T> upstream) {
-        return upstream.subscribeOn(mSubscribeOnScheduler)
-                .observeOn(mObserveOnScheduler);
+        return upstream.subscribeOn(mSubscribeOnScheduler).observeOn(mObserveOnScheduler);
     }
 
     @Override
     public SingleSource<T> apply(Single<T> upstream) {
-        return upstream.subscribeOn(mSubscribeOnScheduler)
-                .observeOn(mObserveOnScheduler);
+        return upstream.subscribeOn(mSubscribeOnScheduler).observeOn(mObserveOnScheduler);
     }
 }

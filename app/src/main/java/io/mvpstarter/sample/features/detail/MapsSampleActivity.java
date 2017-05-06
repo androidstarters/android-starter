@@ -20,8 +20,8 @@ public class MapsSampleActivity extends BaseActivity implements OnMapReadyCallba
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment =
+                (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
 
@@ -30,15 +30,13 @@ public class MapsSampleActivity extends BaseActivity implements OnMapReadyCallba
         return R.layout.activity_maps_sample;
     }
 
-
     /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
+     * Manipulates the map once available. This callback is triggered when the map is ready to be
+     * used. This is where we can add markers or lines, add listeners or move the camera. In this
+     * case, we just add a marker near Sydney, Australia. If Google Play services is not installed
+     * on the device, the user will be prompted to install it inside the SupportMapFragment. This
+     * method will only be triggered once the user has installed Google Play services and returned
+     * to the app.
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {

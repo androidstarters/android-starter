@@ -31,5 +31,4 @@ public class FragmentModule {
     Context providesContext() {
         return mFragment.getActivity();
     }
-
 }
