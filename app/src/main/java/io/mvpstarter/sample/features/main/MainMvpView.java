@@ -1,8 +1,8 @@
-package io.mvpstarter.sample.ui.main;
+package io.mvpstarter.sample.features.main;
 
 import java.util.List;
 
-import io.mvpstarter.sample.ui.base.MvpView;
+import io.mvpstarter.sample.features.base.MvpView;
 
 public interface MainMvpView extends MvpView {
 

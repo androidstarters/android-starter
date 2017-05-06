@@ -11,8 +11,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import io.mvpstarter.sample.common.TestDataFactory;
 import io.mvpstarter.sample.data.DataManager;
 import io.mvpstarter.sample.data.model.Pokemon;
-import io.mvpstarter.sample.ui.detail.DetailMvpView;
-import io.mvpstarter.sample.ui.detail.DetailPresenter;
+import io.mvpstarter.sample.features.detail.DetailMvpView;
+import io.mvpstarter.sample.features.detail.DetailPresenter;
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule;
 import io.reactivex.Single;
 

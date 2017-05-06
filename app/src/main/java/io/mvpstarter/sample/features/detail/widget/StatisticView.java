@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.ui.detail.widget;
+package io.mvpstarter.sample.features.detail.widget;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

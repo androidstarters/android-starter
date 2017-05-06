@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.ui.main;
+package io.mvpstarter.sample.features.main;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

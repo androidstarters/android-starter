@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.ui.detail;
+package io.mvpstarter.sample.features.detail;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,9 +18,9 @@ import butterknife.BindView;
 import io.mvpstarter.sample.R;
 import io.mvpstarter.sample.data.model.Pokemon;
 import io.mvpstarter.sample.data.model.Statistic;
-import io.mvpstarter.sample.ui.base.BaseActivity;
-import io.mvpstarter.sample.ui.common.ErrorView;
-import io.mvpstarter.sample.ui.detail.widget.StatisticView;
+import io.mvpstarter.sample.features.base.BaseActivity;
+import io.mvpstarter.sample.features.common.ErrorView;
+import io.mvpstarter.sample.features.detail.widget.StatisticView;
 import timber.log.Timber;
 
 public class DetailActivity extends BaseActivity implements DetailMvpView, ErrorView.ErrorListener {

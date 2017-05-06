@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.ui.base;
+package io.mvpstarter.sample.features.base;
 
 import android.os.Bundle;
 import android.support.v4.util.LongSparseArray;

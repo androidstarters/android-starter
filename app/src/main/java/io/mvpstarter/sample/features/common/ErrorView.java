@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.ui.common;
+package io.mvpstarter.sample.features.common;
 
 import android.annotation.TargetApi;
 import android.content.Context;

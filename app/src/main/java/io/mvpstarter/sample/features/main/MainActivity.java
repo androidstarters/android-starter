@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.ui.main;
+package io.mvpstarter.sample.features.main;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,9 +14,9 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import io.mvpstarter.sample.R;
-import io.mvpstarter.sample.ui.base.BaseActivity;
-import io.mvpstarter.sample.ui.common.ErrorView;
-import io.mvpstarter.sample.ui.detail.DetailActivity;
+import io.mvpstarter.sample.features.base.BaseActivity;
+import io.mvpstarter.sample.features.common.ErrorView;
+import io.mvpstarter.sample.features.detail.DetailActivity;
 import timber.log.Timber;
 
 public class MainActivity extends BaseActivity implements MainMvpView, PokemonAdapter.ClickListener,
