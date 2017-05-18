@@ -44,7 +44,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
     @Override
     public void onBindViewHolder(PokemonViewHolder holder, int position) {
         String pokemon = this.pokemonList.get(position);
-        holder.mPokemon = pokemon;
+        holder.pokemon = pokemon;
         holder.nameText.setText(
                 String.format("%s%s", pokemon.substring(0, 1).toUpperCase(), pokemon.substring(1)));
     }
@@ -60,7 +60,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
 
     class PokemonViewHolder extends RecyclerView.ViewHolder {
 
-        String mPokemon;
+        String pokemon;
 
         @BindView(R.id.text_name)
         TextView nameText;
@@ -70,7 +70,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(
                     v -> {
-                        if (clickListener != null) clickListener.onPokemonClick(mPokemon);
+                        if (clickListener != null) clickListener.onPokemonClick(pokemon);
                     });
         }
     }
