@@ -13,7 +13,7 @@ import timber.log.Timber;
 
 public class MvpStarterApplication extends Application {
 
-    ApplicationComponent mApplicationComponent;
+    ApplicationComponent applicationComponent;
 
     public static MvpStarterApplication get(Context context) {
         return (MvpStarterApplication) context.getApplicationContext();
@@ -31,17 +31,17 @@ public class MvpStarterApplication extends Application {
     }
 
     public ApplicationComponent getComponent() {
-        if (mApplicationComponent == null) {
-            mApplicationComponent =
+        if (applicationComponent == null) {
+            applicationComponent =
                     DaggerApplicationComponent.builder()
                             .applicationModule(new ApplicationModule(this))
                             .build();
         }
-        return mApplicationComponent;
+        return applicationComponent;
     }
 
     // Needed to replace the component with a test specific one
     public void setComponent(ApplicationComponent applicationComponent) {
-        mApplicationComponent = applicationComponent;
+        this.applicationComponent = applicationComponent;
     }
 }

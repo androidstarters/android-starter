@@ -12,15 +12,15 @@ import io.reactivex.Single;
 @Singleton
 public class DataManager {
 
-    private final MvpStarterService mMvpStarterService;
+    private final MvpStarterService mvpStarterService;
 
     @Inject
     public DataManager(MvpStarterService mvpStarterService) {
-        mMvpStarterService = mvpStarterService;
+        this.mvpStarterService = mvpStarterService;
     }
 
     public Single<List<String>> getPokemonList(int limit) {
-        return mMvpStarterService
+        return mvpStarterService
                 .getPokemonList(limit)
                 .toObservable()
                 .flatMapIterable(namedResources -> namedResources.results)
@@ -29,6 +29,6 @@ public class DataManager {
     }
 
     public Single<Pokemon> getPokemon(String name) {
-        return mMvpStarterService.getPokemon(name);
+        return mvpStarterService.getPokemon(name);
     }
 }

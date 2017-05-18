@@ -26,37 +26,37 @@ public abstract class BaseScheduler<T>
                 CompletableTransformer,
                 FlowableTransformer<T, T> {
 
-    private final Scheduler mSubscribeOnScheduler;
+    private final Scheduler subscribeOnScheduler;
 
-    private final Scheduler mObserveOnScheduler;
+    private final Scheduler observeOnScheduler;
 
     protected BaseScheduler(Scheduler subscribeOnScheduler, Scheduler observeOnScheduler) {
-        mSubscribeOnScheduler = subscribeOnScheduler;
-        mObserveOnScheduler = observeOnScheduler;
+        this.subscribeOnScheduler = subscribeOnScheduler;
+        this.observeOnScheduler = observeOnScheduler;
     }
 
     @Override
     public CompletableSource apply(Completable upstream) {
-        return upstream.subscribeOn(mSubscribeOnScheduler).observeOn(mObserveOnScheduler);
+        return upstream.subscribeOn(subscribeOnScheduler).observeOn(observeOnScheduler);
     }
 
     @Override
     public Publisher<T> apply(Flowable<T> upstream) {
-        return upstream.subscribeOn(mSubscribeOnScheduler).observeOn(mObserveOnScheduler);
+        return upstream.subscribeOn(subscribeOnScheduler).observeOn(observeOnScheduler);
     }
 
     @Override
     public MaybeSource<T> apply(Maybe<T> upstream) {
-        return upstream.subscribeOn(mSubscribeOnScheduler).observeOn(mObserveOnScheduler);
+        return upstream.subscribeOn(subscribeOnScheduler).observeOn(observeOnScheduler);
     }
 
     @Override
     public ObservableSource<T> apply(Observable<T> upstream) {
-        return upstream.subscribeOn(mSubscribeOnScheduler).observeOn(mObserveOnScheduler);
+        return upstream.subscribeOn(subscribeOnScheduler).observeOn(observeOnScheduler);
     }
 
     @Override
     public SingleSource<T> apply(Single<T> upstream) {
-        return upstream.subscribeOn(mSubscribeOnScheduler).observeOn(mObserveOnScheduler);
+        return upstream.subscribeOn(subscribeOnScheduler).observeOn(observeOnScheduler);
     }
 }

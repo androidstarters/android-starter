@@ -11,11 +11,11 @@ import io.mvpstarter.sample.util.rx.scheduler.SchedulerUtils;
 @ConfigPersistent
 public class DetailPresenter extends BasePresenter<DetailMvpView> {
 
-    private final DataManager mDataManager;
+    private final DataManager dataManager;
 
     @Inject
     public DetailPresenter(DataManager dataManager) {
-        mDataManager = dataManager;
+        this.dataManager = dataManager;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class DetailPresenter extends BasePresenter<DetailMvpView> {
     public void getPokemon(String name) {
         checkViewAttached();
         getMvpView().showProgress(true);
-        mDataManager
+        dataManager
                 .getPokemon(name)
                 .compose(SchedulerUtils.ioToMain())
                 .subscribe(

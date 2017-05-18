@@ -24,43 +24,43 @@ public class MainActivity extends BaseActivity
 
     private static final int POKEMON_COUNT = 20;
 
-    @Inject PokemonAdapter mPokemonAdapter;
-    @Inject MainPresenter mMainPresenter;
+    @Inject PokemonAdapter pokemonAdapter;
+    @Inject MainPresenter mainPresenter;
 
     @BindView(R.id.view_error)
-    ErrorView mErrorView;
+    ErrorView errorView;
 
     @BindView(R.id.progress)
-    ProgressBar mProgress;
+    ProgressBar progressBar;
 
     @BindView(R.id.recycler_pokemon)
-    RecyclerView mPokemonRecycler;
+    RecyclerView pokemonRecycler;
 
     @BindView(R.id.swipe_to_refresh)
-    SwipeRefreshLayout mSwipeRefreshLayout;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityComponent().inject(this);
-        mMainPresenter.attachView(this);
+        mainPresenter.attachView(this);
 
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
 
-        mSwipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.primary);
-        mSwipeRefreshLayout.setColorSchemeResources(R.color.white);
-        mSwipeRefreshLayout.setOnRefreshListener(() -> mMainPresenter.getPokemon(POKEMON_COUNT));
+        swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.primary);
+        swipeRefreshLayout.setColorSchemeResources(R.color.white);
+        swipeRefreshLayout.setOnRefreshListener(() -> mainPresenter.getPokemon(POKEMON_COUNT));
 
-        mPokemonAdapter.setClickListener(this);
-        mPokemonRecycler.setLayoutManager(new LinearLayoutManager(this));
-        mPokemonRecycler.setAdapter(mPokemonAdapter);
+        pokemonAdapter.setClickListener(this);
+        pokemonRecycler.setLayoutManager(new LinearLayoutManager(this));
+        pokemonRecycler.setAdapter(pokemonAdapter);
 
-        mErrorView.setErrorListener(this);
+        errorView.setErrorListener(this);
 
-        mMainPresenter.getPokemon(POKEMON_COUNT);
+        mainPresenter.getPokemon(POKEMON_COUNT);
     }
 
     @Override
@@ -71,43 +71,43 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mMainPresenter.detachView();
+        mainPresenter.detachView();
     }
 
     @Override
     public void showPokemon(List<String> pokemon) {
-        mPokemonAdapter.setPokemon(pokemon);
-        mPokemonAdapter.notifyDataSetChanged();
+        pokemonAdapter.setPokemon(pokemon);
+        pokemonAdapter.notifyDataSetChanged();
 
-        mPokemonRecycler.setVisibility(View.VISIBLE);
-        mSwipeRefreshLayout.setVisibility(View.VISIBLE);
+        pokemonRecycler.setVisibility(View.VISIBLE);
+        swipeRefreshLayout.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void showProgress(boolean show) {
         if (show) {
-            if (mPokemonRecycler.getVisibility() == View.VISIBLE
-                    && mPokemonAdapter.getItemCount() > 0) {
-                mSwipeRefreshLayout.setRefreshing(true);
+            if (pokemonRecycler.getVisibility() == View.VISIBLE
+                    && pokemonAdapter.getItemCount() > 0) {
+                swipeRefreshLayout.setRefreshing(true);
             } else {
-                mProgress.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
 
-                mPokemonRecycler.setVisibility(View.GONE);
-                mSwipeRefreshLayout.setVisibility(View.GONE);
+                pokemonRecycler.setVisibility(View.GONE);
+                swipeRefreshLayout.setVisibility(View.GONE);
             }
 
-            mErrorView.setVisibility(View.GONE);
+            errorView.setVisibility(View.GONE);
         } else {
-            mSwipeRefreshLayout.setRefreshing(false);
-            mProgress.setVisibility(View.GONE);
+            swipeRefreshLayout.setRefreshing(false);
+            progressBar.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void showError(Throwable error) {
-        mPokemonRecycler.setVisibility(View.GONE);
-        mSwipeRefreshLayout.setVisibility(View.GONE);
-        mErrorView.setVisibility(View.VISIBLE);
+        pokemonRecycler.setVisibility(View.GONE);
+        swipeRefreshLayout.setVisibility(View.GONE);
+        errorView.setVisibility(View.VISIBLE);
         Timber.e(error, "There was an error retrieving the pokemon");
     }
 
@@ -118,6 +118,6 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onReloadData() {
-        mMainPresenter.getPokemon(POKEMON_COUNT);
+        mainPresenter.getPokemon(POKEMON_COUNT);
     }
 }

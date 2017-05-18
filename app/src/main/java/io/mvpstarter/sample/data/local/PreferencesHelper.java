@@ -13,14 +13,14 @@ public class PreferencesHelper {
 
     public static final String PREF_FILE_NAME = "mvpstarter_pref_file";
 
-    private final SharedPreferences mPref;
+    private final SharedPreferences preferences;
 
     @Inject
     public PreferencesHelper(@ApplicationContext Context context) {
-        mPref = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+        preferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
     }
 
     public void clear() {
-        mPref.edit().clear().apply();
+        preferences.edit().clear().apply();
     }
 }

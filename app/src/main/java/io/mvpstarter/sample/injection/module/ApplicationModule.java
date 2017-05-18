@@ -13,10 +13,10 @@ import io.mvpstarter.sample.injection.ApplicationContext;
 
 @Module
 public class ApplicationModule {
-    private final Application mApplication;
+    private final Application application;
 
     public ApplicationModule(Application application) {
-        mApplication = application;
+        this.application = application;
     }
 
     @Provides
@@ -27,12 +27,12 @@ public class ApplicationModule {
 
     @Provides
     Application provideApplication() {
-        return mApplication;
+        return application;
     }
 
     @Provides
     @ApplicationContext
     Context provideContext() {
-        return mApplication;
+        return application;
     }
 }
