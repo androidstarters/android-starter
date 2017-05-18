@@ -33,14 +33,14 @@ import static org.mockito.Mockito.when;
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
 
-    private final TestComponentRule mComponent =
+    private final TestComponentRule componentRule =
             new TestComponentRule(InstrumentationRegistry.getTargetContext());
     private final ActivityTestRule<MainActivity> mMain =
             new ActivityTestRule<>(MainActivity.class, false, false);
 
     // TestComponentRule needs to go first to make sure the Dagger ApplicationTestComponent is set
     // in the Application before any Activity is launched.
-    @Rule public TestRule chain = RuleChain.outerRule(mComponent).around(mMain);
+    @Rule public TestRule chain = RuleChain.outerRule(componentRule).around(mMain);
 
     @Test
     public void checkPokemonsDisplay() {
@@ -75,10 +75,10 @@ public class MainActivityTest {
     }
 
     public void stubDataManagerGetPokemonList(Single<List<String>> single) {
-        when(mComponent.getMockDataManager().getPokemonList(anyInt())).thenReturn(single);
+        when(componentRule.getMockDataManager().getPokemonList(anyInt())).thenReturn(single);
     }
 
     public void stubDataManagerGetPokemon(Single<Pokemon> single) {
-        when(mComponent.getMockDataManager().getPokemon(anyString())).thenReturn(single);
+        when(componentRule.getMockDataManager().getPokemon(anyString())).thenReturn(single);
     }
 }

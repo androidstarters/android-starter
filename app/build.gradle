@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply from: '../config/quality/quality.gradle'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'jacoco'
 //apply plugin: 'io.fabric'
 
@@ -90,10 +89,6 @@ configurations.all {
     }
 }
 
-retrolambda {
-    jvmArgs '-noverify'
-    incremental true
-}
 
 apply from: 'dependencies.gradle'
 
@@ -131,8 +126,6 @@ dependencies {
 
     testCompile unitTestLibs
     androidTestCompile androidTestsLibs
-
-    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.5.0'
 }
 
 // Log out test results to console
