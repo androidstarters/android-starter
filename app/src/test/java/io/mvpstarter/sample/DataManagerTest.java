@@ -26,14 +26,14 @@ import static org.mockito.Mockito.when;
 public class DataManagerTest {
 
     @Rule
-    public final RxSchedulersOverrideRule mOverrideSchedulersRule = new RxSchedulersOverrideRule();
+    public final RxSchedulersOverrideRule overrideSchedulersRule = new RxSchedulersOverrideRule();
 
-    @Mock MvpStarterService mMockMvpStarterService;
-    private DataManager mDataManager;
+    @Mock MvpStarterService mockMvpStarterService;
+    private DataManager dataManager;
 
     @Before
     public void setUp() {
-        mDataManager = new DataManager(mMockMvpStarterService);
+        dataManager = new DataManager(mockMvpStarterService);
     }
 
     @Test
@@ -42,11 +42,10 @@ public class DataManagerTest {
         PokemonListResponse pokemonListResponse = new PokemonListResponse();
         pokemonListResponse.results = namedResourceList;
 
-        when(mMockMvpStarterService.getPokemonList(anyInt()))
+        when(mockMvpStarterService.getPokemonList(anyInt()))
                 .thenReturn(Single.just(pokemonListResponse));
 
-        mDataManager
-                .getPokemonList(10)
+        dataManager.getPokemonList(10)
                 .test()
                 .assertComplete()
                 .assertValue(TestDataFactory.makePokemonNameList(namedResourceList));
@@ -56,8 +55,8 @@ public class DataManagerTest {
     public void getPokemonCompletesAndEmitsPokemon() {
         String name = "charmander";
         Pokemon pokemon = TestDataFactory.makePokemon(name);
-        when(mMockMvpStarterService.getPokemon(anyString())).thenReturn(Single.just(pokemon));
+        when(mockMvpStarterService.getPokemon(anyString())).thenReturn(Single.just(pokemon));
 
-        mDataManager.getPokemon(name).test().assertComplete().assertValue(pokemon);
+        dataManager.getPokemon(name).test().assertComplete().assertValue(pokemon);
     }
 }

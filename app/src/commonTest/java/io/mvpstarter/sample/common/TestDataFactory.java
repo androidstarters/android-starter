@@ -16,7 +16,7 @@ import io.mvpstarter.sample.data.model.Statistic;
  */
 public class TestDataFactory {
 
-    private static final Random sRandom = new Random();
+    private static final Random random = new Random();
 
     public static String randomUuid() {
         return UUID.randomUUID().toString();
@@ -49,7 +49,7 @@ public class TestDataFactory {
 
     public static Statistic makeStatistic() {
         Statistic statistic = new Statistic();
-        statistic.baseStat = sRandom.nextInt();
+        statistic.baseStat = random.nextInt();
         statistic.stat = makeNamedResource(randomUuid());
         return statistic;
     }

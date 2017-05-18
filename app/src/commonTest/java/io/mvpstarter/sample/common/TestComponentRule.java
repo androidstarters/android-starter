@@ -20,28 +20,28 @@ import io.mvpstarter.sample.data.DataManager;
  */
 public class TestComponentRule implements TestRule {
 
-    private final TestComponent mTestComponent;
-    private final Context mContext;
+    private final TestComponent testComponent;
+    private final Context context;
 
     public TestComponentRule(Context context) {
-        mContext = context;
+        this.context = context;
         MvpStarterApplication application = MvpStarterApplication.get(context);
-        mTestComponent =
+        testComponent =
                 DaggerTestComponent.builder()
                         .applicationTestModule(new ApplicationTestModule(application))
                         .build();
     }
 
     public TestComponent getTestComponent() {
-        return mTestComponent;
+        return testComponent;
     }
 
     public Context getContext() {
-        return mContext;
+        return context;
     }
 
     public DataManager getMockDataManager() {
-        return mTestComponent.dataManager();
+        return testComponent.dataManager();
     }
 
     @Override
@@ -49,8 +49,8 @@ public class TestComponentRule implements TestRule {
         return new Statement() {
             @Override
             public void evaluate() throws Throwable {
-                MvpStarterApplication application = MvpStarterApplication.get(mContext);
-                application.setComponent(mTestComponent);
+                MvpStarterApplication application = MvpStarterApplication.get(context);
+                application.setComponent(testComponent);
                 base.evaluate();
                 application.setComponent(null);
             }
