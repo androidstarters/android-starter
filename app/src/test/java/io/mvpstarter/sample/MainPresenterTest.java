@@ -30,43 +30,43 @@ import static org.mockito.Mockito.when;
 public class MainPresenterTest {
 
     @Rule
-    public final RxSchedulersOverrideRule mOverrideSchedulersRule = new RxSchedulersOverrideRule();
+    public final RxSchedulersOverrideRule overrideSchedulersRule = new RxSchedulersOverrideRule();
 
-    @Mock MainMvpView mMockMainMvpView;
-    @Mock DataManager mMockDataManager;
-    private MainPresenter mMainPresenter;
+    @Mock MainMvpView mockMainMvpView;
+    @Mock DataManager mockDataManager;
+    private MainPresenter mainPresenter;
 
     @Before
     public void setUp() {
-        mMainPresenter = new MainPresenter(mMockDataManager);
-        mMainPresenter.attachView(mMockMainMvpView);
+        mainPresenter = new MainPresenter(mockDataManager);
+        mainPresenter.attachView(mockMainMvpView);
     }
 
     @After
     public void tearDown() {
-        mMainPresenter.detachView();
+        mainPresenter.detachView();
     }
 
     @Test
     public void getPokemonReturnsPokemonNames() throws Exception {
         List<String> pokemonList = TestDataFactory.makePokemonNamesList(10);
-        when(mMockDataManager.getPokemonList(10)).thenReturn(Single.just(pokemonList));
+        when(mockDataManager.getPokemonList(10)).thenReturn(Single.just(pokemonList));
 
-        mMainPresenter.getPokemon(10);
+        mainPresenter.getPokemon(10);
 
-        verify(mMockMainMvpView, times(2)).showProgress(anyBoolean());
-        verify(mMockMainMvpView).showPokemon(pokemonList);
-        verify(mMockMainMvpView, never()).showError(new RuntimeException());
+        verify(mockMainMvpView, times(2)).showProgress(anyBoolean());
+        verify(mockMainMvpView).showPokemon(pokemonList);
+        verify(mockMainMvpView, never()).showError(new RuntimeException());
     }
 
     @Test
     public void getPokemonReturnsError() throws Exception {
-        when(mMockDataManager.getPokemonList(10)).thenReturn(Single.error(new RuntimeException()));
+        when(mockDataManager.getPokemonList(10)).thenReturn(Single.error(new RuntimeException()));
 
-        mMainPresenter.getPokemon(10);
+        mainPresenter.getPokemon(10);
 
-        verify(mMockMainMvpView, times(2)).showProgress(anyBoolean());
-        verify(mMockMainMvpView).showError(any(Throwable.class));
-        verify(mMockMainMvpView, never()).showPokemon(ArgumentMatchers.anyList());
+        verify(mockMainMvpView, times(2)).showProgress(anyBoolean());
+        verify(mockMainMvpView).showError(any(Throwable.class));
+        verify(mockMainMvpView, never()).showPokemon(ArgumentMatchers.anyList());
     }
 }

@@ -29,43 +29,43 @@ import static org.mockito.Mockito.when;
 public class DetailPresenterTest {
 
     @Rule
-    public final RxSchedulersOverrideRule mOverrideSchedulersRule = new RxSchedulersOverrideRule();
+    public final RxSchedulersOverrideRule overrideSchedulersRule = new RxSchedulersOverrideRule();
 
-    @Mock DetailMvpView mMockDetailMvpView;
-    @Mock DataManager mMockDataManager;
-    private DetailPresenter mDetailPresenter;
+    @Mock DetailMvpView mockDetailMvpView;
+    @Mock DataManager mockDataManager;
+    private DetailPresenter detailPresenter;
 
     @Before
     public void setUp() {
-        mDetailPresenter = new DetailPresenter(mMockDataManager);
-        mDetailPresenter.attachView(mMockDetailMvpView);
+        detailPresenter = new DetailPresenter(mockDataManager);
+        detailPresenter.attachView(mockDetailMvpView);
     }
 
     @After
     public void tearDown() {
-        mDetailPresenter.detachView();
+        detailPresenter.detachView();
     }
 
     @Test
     public void getPokemonDetailReturnsPokemon() throws Exception {
         Pokemon pokemon = TestDataFactory.makePokemon("id");
-        when(mMockDataManager.getPokemon(anyString())).thenReturn(Single.just(pokemon));
+        when(mockDataManager.getPokemon(anyString())).thenReturn(Single.just(pokemon));
 
-        mDetailPresenter.getPokemon(anyString());
+        detailPresenter.getPokemon(anyString());
 
-        verify(mMockDetailMvpView, times(2)).showProgress(anyBoolean());
-        verify(mMockDetailMvpView).showPokemon(pokemon);
-        verify(mMockDetailMvpView, never()).showError(new RuntimeException());
+        verify(mockDetailMvpView, times(2)).showProgress(anyBoolean());
+        verify(mockDetailMvpView).showPokemon(pokemon);
+        verify(mockDetailMvpView, never()).showError(new RuntimeException());
     }
 
     @Test
     public void getPokemonDetailReturnsError() throws Exception {
-        when(mMockDataManager.getPokemon("id")).thenReturn(Single.error(new RuntimeException()));
+        when(mockDataManager.getPokemon("id")).thenReturn(Single.error(new RuntimeException()));
 
-        mDetailPresenter.getPokemon("id");
+        detailPresenter.getPokemon("id");
 
-        verify(mMockDetailMvpView, times(2)).showProgress(anyBoolean());
-        verify(mMockDetailMvpView).showError(any(Throwable.class));
-        verify(mMockDetailMvpView, never()).showPokemon(any(Pokemon.class));
+        verify(mockDetailMvpView, times(2)).showProgress(anyBoolean());
+        verify(mockDetailMvpView).showError(any(Throwable.class));
+        verify(mockDetailMvpView, never()).showPokemon(any(Pokemon.class));
     }
 }

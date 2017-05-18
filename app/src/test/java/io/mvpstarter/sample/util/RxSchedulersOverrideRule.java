@@ -28,7 +28,7 @@ public class RxSchedulersOverrideRule implements TestRule {
 
     public final Scheduler SCHEDULER_INSTANCE = Schedulers.trampoline();
     private Function<Scheduler, Scheduler> mSchedulerFunction = scheduler -> SCHEDULER_INSTANCE;
-    private Function<Callable<Scheduler>, Scheduler> mSchedulerFunctionLazy =
+    private Function<Callable<Scheduler>, Scheduler> schedulerFunctionLazy =
             schedulerCallable -> SCHEDULER_INSTANCE;
 
     @Override
@@ -37,7 +37,7 @@ public class RxSchedulersOverrideRule implements TestRule {
             @Override
             public void evaluate() throws Throwable {
                 RxAndroidPlugins.reset();
-                RxAndroidPlugins.setInitMainThreadSchedulerHandler(mSchedulerFunctionLazy);
+                RxAndroidPlugins.setInitMainThreadSchedulerHandler(schedulerFunctionLazy);
 
                 RxJavaPlugins.reset();
                 RxJavaPlugins.setIoSchedulerHandler(mSchedulerFunction);
