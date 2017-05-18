@@ -30,6 +30,7 @@ public class DetailPresenterTest {
 
     @Rule
     public final RxSchedulersOverrideRule mOverrideSchedulersRule = new RxSchedulersOverrideRule();
+
     @Mock DetailMvpView mMockDetailMvpView;
     @Mock DataManager mMockDataManager;
     private DetailPresenter mDetailPresenter;
