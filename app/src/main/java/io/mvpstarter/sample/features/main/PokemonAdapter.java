@@ -17,20 +17,20 @@ import io.mvpstarter.sample.R;
 
 public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder> {
 
-    private List<String> mPokemon;
-    private ClickListener mClickListener;
+    private List<String> pokemonList;
+    private ClickListener clickListener;
 
     @Inject
     public PokemonAdapter() {
-        mPokemon = Collections.emptyList();
+        pokemonList = Collections.emptyList();
     }
 
     public void setPokemon(List<String> pokemon) {
-        mPokemon = pokemon;
+        this.pokemonList = pokemon;
     }
 
     public void setClickListener(ClickListener clickListener) {
-        mClickListener = clickListener;
+        this.clickListener = clickListener;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
 
     @Override
     public void onBindViewHolder(PokemonViewHolder holder, int position) {
-        String pokemon = mPokemon.get(position);
+        String pokemon = this.pokemonList.get(position);
         holder.mPokemon = pokemon;
         holder.nameText.setText(
                 String.format("%s%s", pokemon.substring(0, 1).toUpperCase(), pokemon.substring(1)));
@@ -51,7 +51,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
 
     @Override
     public int getItemCount() {
-        return mPokemon.size();
+        return pokemonList.size();
     }
 
     public interface ClickListener {
@@ -70,7 +70,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(
                     v -> {
-                        if (mClickListener != null) mClickListener.onPokemonClick(mPokemon);
+                        if (clickListener != null) clickListener.onPokemonClick(mPokemon);
                     });
         }
     }

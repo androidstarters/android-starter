@@ -14,7 +14,7 @@ import io.mvpstarter.sample.R;
 
 public class ErrorView extends LinearLayout {
 
-    private ErrorListener mErrorListener;
+    private ErrorListener errorListener;
 
     public ErrorView(Context context) {
         super(context);
@@ -46,13 +46,13 @@ public class ErrorView extends LinearLayout {
 
     @OnClick(R.id.button_reload)
     public void onReloadButtonClick() {
-        if (mErrorListener != null) {
-            mErrorListener.onReloadData();
+        if (errorListener != null) {
+            errorListener.onReloadData();
         }
     }
 
     public void setErrorListener(ErrorListener errorListener) {
-        mErrorListener = errorListener;
+        this.errorListener = errorListener;
     }
 
     public interface ErrorListener {

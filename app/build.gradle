@@ -18,7 +18,7 @@ android {
         publishNonDefault true
 
         applicationId "in.mvpstarter.sample"
-        minSdkVersion 18
+        minSdkVersion 19
         targetSdkVersion 25
         testInstrumentationRunner "${applicationId}.runner.RxAndroidJUnitRunner"
         versionCode 1000

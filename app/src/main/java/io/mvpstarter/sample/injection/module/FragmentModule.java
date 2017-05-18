@@ -10,25 +10,25 @@ import io.mvpstarter.sample.injection.ActivityContext;
 
 @Module
 public class FragmentModule {
-    private Fragment mFragment;
+    private Fragment fragment;
 
     public FragmentModule(Fragment fragment) {
-        mFragment = fragment;
+        this.fragment = fragment;
     }
 
     @Provides
     Fragment providesFragment() {
-        return mFragment;
+        return fragment;
     }
 
     @Provides
     Activity provideActivity() {
-        return mFragment.getActivity();
+        return fragment.getActivity();
     }
 
     @Provides
     @ActivityContext
     Context providesContext() {
-        return mFragment.getActivity();
+        return fragment.getActivity();
     }
 }

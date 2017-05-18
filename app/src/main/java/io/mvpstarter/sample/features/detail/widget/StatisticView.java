@@ -18,10 +18,10 @@ import io.mvpstarter.sample.data.model.Statistic;
 public class StatisticView extends RelativeLayout {
 
     @BindView(R.id.text_name)
-    TextView mNameText;
+    TextView nameText;
 
     @BindView(R.id.progress_stat)
-    ProgressBar mStatProgress;
+    ProgressBar statProgress;
 
     public StatisticView(Context context) {
         super(context);
@@ -51,9 +51,9 @@ public class StatisticView extends RelativeLayout {
 
     @SuppressLint("SetTextI18n")
     public void setStat(Statistic statistic) {
-        mNameText.setText(
+        nameText.setText(
                 statistic.stat.name.substring(0, 1).toUpperCase()
                         + statistic.stat.name.substring(1));
-        mStatProgress.setProgress(statistic.baseStat);
+        statProgress.setProgress(statistic.baseStat);
     }
 }
