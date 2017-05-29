@@ -1,18 +1,18 @@
-package io.mvpstarter.sample.features.base;
+package io.mvpstarter.sample.common.base;
 
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 import rx.Observable;
 import rx.Single;
-import rx.Subscription;
-import rx.subscriptions.CompositeSubscription;
 
 /**
  * Base class that implements the Presenter interface and provides a base implementation for
  * attachView() and detachView(). It also handles keeping a reference to the mvpView that can be
- * accessed from the children classes by calling getMvpView().
+ * accessed from the children classes by calling getView().
  */
 public class BasePresenter<T extends MvpView> implements Presenter<T> {
 
-    private final CompositeSubscription compositeSubscription = new CompositeSubscription();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
     private T mvpView;
 
     @Override
@@ -23,25 +23,25 @@ public class BasePresenter<T extends MvpView> implements Presenter<T> {
     @Override
     public void detachView() {
         mvpView = null;
-        if (!compositeSubscription.isUnsubscribed()) {
-            compositeSubscription.clear();
+        if (!compositeDisposable.isDisposed()) {
+            compositeDisposable.clear();
         }
     }
 
-    public boolean isViewAttached() {
+    protected boolean isViewAttached() {
         return mvpView != null;
     }
 
-    public T getMvpView() {
+    protected T getView() {
         return mvpView;
     }
 
-    public void checkViewAttached() {
+    protected void checkViewAttached() {
         if (!isViewAttached()) throw new MvpViewNotAttachedException();
     }
 
-    public void addSubscription(Subscription subs) {
-        compositeSubscription.add(subs);
+    public void addDisposable(Disposable disposable) {
+        compositeDisposable.add(disposable);
     }
 
     private static class MvpViewNotAttachedException extends RuntimeException {

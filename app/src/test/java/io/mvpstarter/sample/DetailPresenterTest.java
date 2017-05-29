@@ -9,8 +9,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import io.mvpstarter.sample.common.TestDataFactory;
-import io.mvpstarter.sample.data.DataManager;
 import io.mvpstarter.sample.data.model.Pokemon;
+import io.mvpstarter.sample.data.remote.ApiManager;
 import io.mvpstarter.sample.features.detail.DetailMvpView;
 import io.mvpstarter.sample.features.detail.DetailPresenter;
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule;
@@ -24,20 +24,24 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/** Created by ravindra on 24/12/16. */
+/**
+ * Created by ravindra on 24/12/16.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class DetailPresenterTest {
 
     @Rule
     public final RxSchedulersOverrideRule overrideSchedulersRule = new RxSchedulersOverrideRule();
 
-    @Mock DetailMvpView mockDetailMvpView;
-    @Mock DataManager mockDataManager;
+    @Mock
+    DetailMvpView mockDetailMvpView;
+    @Mock
+    ApiManager mockApiManager;
     private DetailPresenter detailPresenter;
 
     @Before
     public void setUp() {
-        detailPresenter = new DetailPresenter(mockDataManager);
+        detailPresenter = new DetailPresenter(mockApiManager);
         detailPresenter.attachView(mockDetailMvpView);
     }
 
@@ -49,7 +53,7 @@ public class DetailPresenterTest {
     @Test
     public void getPokemonDetailReturnsPokemon() throws Exception {
         Pokemon pokemon = TestDataFactory.makePokemon("id");
-        when(mockDataManager.getPokemon(anyString())).thenReturn(Single.just(pokemon));
+        when(mockApiManager.getPokemon(anyString())).thenReturn(Single.just(pokemon));
 
         detailPresenter.getPokemon(anyString());
 
@@ -60,7 +64,7 @@ public class DetailPresenterTest {
 
     @Test
     public void getPokemonDetailReturnsError() throws Exception {
-        when(mockDataManager.getPokemon("id")).thenReturn(Single.error(new RuntimeException()));
+        when(mockApiManager.getPokemon("id")).thenReturn(Single.error(new RuntimeException()));
 
         detailPresenter.getPokemon("id");
 

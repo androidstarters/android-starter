@@ -10,7 +10,8 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import io.mvpstarter.sample.R;
-import io.mvpstarter.sample.features.base.BaseActivity;
+import io.mvpstarter.sample.common.base.BaseActivity;
+import io.mvpstarter.sample.di.component.ActivityComponent;
 
 public class MapsSampleActivity extends BaseActivity implements OnMapReadyCallback {
 
@@ -28,6 +29,16 @@ public class MapsSampleActivity extends BaseActivity implements OnMapReadyCallba
     @Override
     public int getLayout() {
         return R.layout.activity_maps_sample;
+    }
+
+    @Override
+    protected void inject(ActivityComponent activityComponent) {
+
+    }
+
+    @Override
+    protected void detachPresenter() {
+
     }
 
     /**

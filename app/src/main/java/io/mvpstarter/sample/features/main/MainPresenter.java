@@ -2,19 +2,19 @@ package io.mvpstarter.sample.features.main;
 
 import javax.inject.Inject;
 
-import io.mvpstarter.sample.data.DataManager;
-import io.mvpstarter.sample.features.base.BasePresenter;
-import io.mvpstarter.sample.injection.ConfigPersistent;
+import io.mvpstarter.sample.common.base.BasePresenter;
+import io.mvpstarter.sample.data.remote.ApiManager;
+import io.mvpstarter.sample.di.ConfigPersistent;
 import io.mvpstarter.sample.util.rx.scheduler.SchedulerUtils;
 
 @ConfigPersistent
 public class MainPresenter extends BasePresenter<MainMvpView> {
 
-    private final DataManager dataManager;
+    private final ApiManager apiManager;
 
     @Inject
-    public MainPresenter(DataManager dataManager) {
-        this.dataManager = dataManager;
+    public MainPresenter(ApiManager apiManager) {
+        this.apiManager = apiManager;
     }
 
     @Override
@@ -24,18 +24,18 @@ public class MainPresenter extends BasePresenter<MainMvpView> {
 
     public void getPokemon(int limit) {
         checkViewAttached();
-        getMvpView().showProgress(true);
-        dataManager
+        getView().showProgress(true);
+        apiManager
                 .getPokemonList(limit)
                 .compose(SchedulerUtils.ioToMain())
                 .subscribe(
                         pokemons -> {
-                            getMvpView().showProgress(false);
-                            getMvpView().showPokemon(pokemons);
+                            getView().showProgress(false);
+                            getView().showPokemon(pokemons);
                         },
                         throwable -> {
-                            getMvpView().showProgress(false);
-                            getMvpView().showError(throwable);
+                            getView().showProgress(false);
+                            getView().showError(throwable);
                         });
     }
 }

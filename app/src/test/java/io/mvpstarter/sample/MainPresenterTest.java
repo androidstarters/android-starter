@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import io.mvpstarter.sample.common.TestDataFactory;
-import io.mvpstarter.sample.data.DataManager;
+import io.mvpstarter.sample.data.remote.ApiManager;
 import io.mvpstarter.sample.features.main.MainMvpView;
 import io.mvpstarter.sample.features.main.MainPresenter;
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule;
@@ -25,20 +25,24 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/** Created by ravindra on 24/12/16. */
+/**
+ * Created by ravindra on 24/12/16.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class MainPresenterTest {
 
     @Rule
     public final RxSchedulersOverrideRule overrideSchedulersRule = new RxSchedulersOverrideRule();
 
-    @Mock MainMvpView mockMainMvpView;
-    @Mock DataManager mockDataManager;
+    @Mock
+    MainMvpView mockMainMvpView;
+    @Mock
+    ApiManager mockApiManager;
     private MainPresenter mainPresenter;
 
     @Before
     public void setUp() {
-        mainPresenter = new MainPresenter(mockDataManager);
+        mainPresenter = new MainPresenter(mockApiManager);
         mainPresenter.attachView(mockMainMvpView);
     }
 
@@ -50,7 +54,7 @@ public class MainPresenterTest {
     @Test
     public void getPokemonReturnsPokemonNames() throws Exception {
         List<String> pokemonList = TestDataFactory.makePokemonNamesList(10);
-        when(mockDataManager.getPokemonList(10)).thenReturn(Single.just(pokemonList));
+        when(mockApiManager.getPokemonList(10)).thenReturn(Single.just(pokemonList));
 
         mainPresenter.getPokemon(10);
 
@@ -61,7 +65,7 @@ public class MainPresenterTest {
 
     @Test
     public void getPokemonReturnsError() throws Exception {
-        when(mockDataManager.getPokemonList(10)).thenReturn(Single.error(new RuntimeException()));
+        when(mockApiManager.getPokemonList(10)).thenReturn(Single.error(new RuntimeException()));
 
         mainPresenter.getPokemon(10);
 

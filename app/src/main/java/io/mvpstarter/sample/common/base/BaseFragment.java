@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.features.base;
+package io.mvpstarter.sample.common.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,11 +11,11 @@ import android.view.ViewGroup;
 import java.util.concurrent.atomic.AtomicLong;
 
 import butterknife.ButterKnife;
-import io.mvpstarter.sample.MvpStarterApplication;
-import io.mvpstarter.sample.injection.component.ConfigPersistentComponent;
-import io.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent;
-import io.mvpstarter.sample.injection.component.FragmentComponent;
-import io.mvpstarter.sample.injection.module.FragmentModule;
+import io.mvpstarter.sample.common.MvpStarterApplication;
+import io.mvpstarter.sample.di.component.ConfigPersistentComponent;
+import io.mvpstarter.sample.di.component.DaggerConfigPersistentComponent;
+import io.mvpstarter.sample.di.component.FragmentComponent;
+import io.mvpstarter.sample.di.module.FragmentModule;
 import timber.log.Timber;
 
 /**
@@ -48,7 +48,7 @@ public abstract class BaseFragment extends Fragment {
             Timber.i("Creating new ConfigPersistentComponent id=%d", fragmentId);
             configPersistentComponent =
                     DaggerConfigPersistentComponent.builder()
-                            .applicationComponent(
+                            .appComponent(
                                     MvpStarterApplication.get(getActivity()).getComponent())
                             .build();
             componentsArray.put(fragmentId, configPersistentComponent);
@@ -57,6 +57,7 @@ public abstract class BaseFragment extends Fragment {
             configPersistentComponent = componentsArray.get(fragmentId);
         }
         fragmentComponent = configPersistentComponent.fragmentComponent(new FragmentModule(this));
+        inject(fragmentComponent);
     }
 
     @Nullable
@@ -70,7 +71,11 @@ public abstract class BaseFragment extends Fragment {
         return view;
     }
 
-    public abstract int getLayout();
+    protected abstract int getLayout();
+
+    protected abstract void inject(FragmentComponent fragmentComponent);
+
+    protected abstract void detachPresenter();
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -84,10 +89,7 @@ public abstract class BaseFragment extends Fragment {
             Timber.i("Clearing ConfigPersistentComponent id=%d", fragmentId);
             componentsArray.remove(fragmentId);
         }
+        detachPresenter();
         super.onDestroy();
-    }
-
-    public FragmentComponent fragmentComponent() {
-        return fragmentComponent;
     }
 }

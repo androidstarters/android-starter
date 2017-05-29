@@ -14,16 +14,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
 /**
- * Provide "make" methods to create instances of {@link MvpStarterService} and its related
+ * Provide "make" methods to create instances of {@link PokemonApi} and its related
  * dependencies, such as OkHttpClient, Gson, etc.
  */
 public class MvpStarterServiceFactory {
 
-    public static MvpStarterService makeStarterService() {
+    public static PokemonApi makeStarterService() {
         return makeMvpStarterService(makeGson());
     }
 
-    private static MvpStarterService makeMvpStarterService(Gson gson) {
+    private static PokemonApi makeMvpStarterService(Gson gson) {
         Retrofit retrofit =
                 new Retrofit.Builder()
                         .baseUrl(BuildConfig.POKEAPI_API_URL)
@@ -31,7 +31,7 @@ public class MvpStarterServiceFactory {
                         .addConverterFactory(GsonConverterFactory.create(gson))
                         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                         .build();
-        return retrofit.create(MvpStarterService.class);
+        return retrofit.create(PokemonApi.class);
     }
 
     private static OkHttpClient makeOkHttpClient() {

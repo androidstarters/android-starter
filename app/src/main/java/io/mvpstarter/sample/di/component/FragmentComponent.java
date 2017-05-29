@@ -1,8 +1,8 @@
-package io.mvpstarter.sample.injection.component;
+package io.mvpstarter.sample.di.component;
 
 import dagger.Subcomponent;
-import io.mvpstarter.sample.injection.PerFragment;
-import io.mvpstarter.sample.injection.module.FragmentModule;
+import io.mvpstarter.sample.di.PerFragment;
+import io.mvpstarter.sample.di.module.FragmentModule;
 
 /** This component inject dependencies to all Fragments across the application */
 @PerFragment
