@@ -15,4 +15,5 @@
     <string name="error_message">There was a problem loading the pokemon, please try again!</string>
     <string name="error_reload">Reload</string>
     <string name="title_activity_maps_sample">Map</string>
+    <string name="error_something_bad_happened">Something bad happened. Please try again.</string>
 </resources>

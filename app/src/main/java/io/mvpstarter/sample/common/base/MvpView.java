@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.features.base;
+package io.mvpstarter.sample.common.base;
 
 /**
  * Base interface that any class that wants to act as a View in the MVP (Model View Presenter)

@@ -75,10 +75,10 @@ public class MainActivityTest {
     }
 
     public void stubDataManagerGetPokemonList(Single<List<String>> single) {
-        when(componentRule.getMockDataManager().getPokemonList(anyInt())).thenReturn(single);
+        when(componentRule.getMockApiManager().getPokemonList(anyInt())).thenReturn(single);
     }
 
     public void stubDataManagerGetPokemon(Single<Pokemon> single) {
-        when(componentRule.getMockDataManager().getPokemon(anyString())).thenReturn(single);
+        when(componentRule.getMockApiManager().getPokemon(anyString())).thenReturn(single);
     }
 }

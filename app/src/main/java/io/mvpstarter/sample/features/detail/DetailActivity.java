@@ -16,9 +16,10 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import io.mvpstarter.sample.R;
+import io.mvpstarter.sample.common.base.BaseActivity;
 import io.mvpstarter.sample.data.model.Pokemon;
 import io.mvpstarter.sample.data.model.Statistic;
-import io.mvpstarter.sample.features.base.BaseActivity;
+import io.mvpstarter.sample.di.component.ActivityComponent;
 import io.mvpstarter.sample.features.common.ErrorView;
 import io.mvpstarter.sample.features.detail.widget.StatisticView;
 import timber.log.Timber;
@@ -58,7 +59,6 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        activityComponent().inject(this);
         detailPresenter.attachView(this);
 
         pokemonName = getIntent().getStringExtra(EXTRA_POKEMON_NAME);
@@ -79,6 +79,16 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
     @Override
     public int getLayout() {
         return R.layout.activity_detail;
+    }
+
+    @Override
+    protected void inject(ActivityComponent activityComponent) {
+        activityComponent.inject(this);
+    }
+
+    @Override
+    protected void detachPresenter() {
+        detailPresenter.detachView();
     }
 
     @Override
@@ -114,9 +124,4 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
         detailPresenter.getPokemon(pokemonName);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        detailPresenter.detachView();
-    }
 }
