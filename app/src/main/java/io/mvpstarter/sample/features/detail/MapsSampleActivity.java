@@ -1,6 +1,7 @@
 package io.mvpstarter.sample.features.detail;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -10,35 +11,19 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import io.mvpstarter.sample.R;
-import io.mvpstarter.sample.common.base.BaseActivity;
-import io.mvpstarter.sample.di.component.ActivityComponent;
 
-public class MapsSampleActivity extends BaseActivity implements OnMapReadyCallback {
+public class MapsSampleActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_maps_sample);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-    }
-
-    @Override
-    public int getLayout() {
-        return R.layout.activity_maps_sample;
-    }
-
-    @Override
-    protected void inject(ActivityComponent activityComponent) {
-
-    }
-
-    @Override
-    protected void detachPresenter() {
-
     }
 
     /**

@@ -51,8 +51,6 @@ public class MainActivity extends BaseActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mainPresenter.attachView(this);
-
         setSupportActionBar(toolbar);
 
         swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.primary);
@@ -88,6 +86,11 @@ public class MainActivity extends BaseActivity
     @Override
     protected void inject(ActivityComponent activityComponent) {
         activityComponent.inject(this);
+    }
+
+    @Override
+    protected void attachView() {
+        mainPresenter.attachView(this);
     }
 
     @Override
