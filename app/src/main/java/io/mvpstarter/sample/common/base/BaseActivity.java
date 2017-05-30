@@ -36,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
         ButterKnife.bind(this);
+
         // Create the ActivityComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
         activityId =
@@ -56,11 +57,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         ActivityComponent activityComponent = configPersistentComponent.activityComponent(new ActivityModule(this));
         inject(activityComponent);
+        attachView();
     }
 
     protected abstract int getLayout();
 
     protected abstract void inject(ActivityComponent activityComponent);
+
+    protected abstract void attachView();
 
     protected abstract void detachPresenter();
 

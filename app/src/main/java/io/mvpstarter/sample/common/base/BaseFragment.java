@@ -30,13 +30,11 @@ public abstract class BaseFragment extends Fragment {
             new LongSparseArray<>();
     private static final AtomicLong NEXT_ID = new AtomicLong(0);
 
-    private FragmentComponent fragmentComponent;
     private long fragmentId;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Create the FragmentComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
         fragmentId =
@@ -56,8 +54,9 @@ public abstract class BaseFragment extends Fragment {
             Timber.i("Reusing ConfigPersistentComponent id=%d", fragmentId);
             configPersistentComponent = componentsArray.get(fragmentId);
         }
-        fragmentComponent = configPersistentComponent.fragmentComponent(new FragmentModule(this));
+        FragmentComponent fragmentComponent = configPersistentComponent.fragmentComponent(new FragmentModule(this));
         inject(fragmentComponent);
+        attachView();
     }
 
     @Nullable
@@ -74,6 +73,8 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int getLayout();
 
     protected abstract void inject(FragmentComponent fragmentComponent);
+
+    protected abstract void attachView();
 
     protected abstract void detachPresenter();
 

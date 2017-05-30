@@ -59,7 +59,6 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        detailPresenter.attachView(this);
 
         pokemonName = getIntent().getStringExtra(EXTRA_POKEMON_NAME);
         if (pokemonName == null) {
@@ -84,6 +83,11 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
     @Override
     protected void inject(ActivityComponent activityComponent) {
         activityComponent.inject(this);
+    }
+
+    @Override
+    protected void attachView() {
+        detailPresenter.attachView(this);
     }
 
     @Override
