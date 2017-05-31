@@ -2,7 +2,7 @@ package io.mvpstarter.sample.features.main;
 
 import java.util.List;
 
-import io.mvpstarter.sample.common.base.MvpView;
+import io.mvpstarter.sample.features.base.MvpView;
 
 public interface MainMvpView extends MvpView {
 

@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-import io.mvpstarter.sample.data.model.NamedResource;
-import io.mvpstarter.sample.data.model.Pokemon;
-import io.mvpstarter.sample.data.model.Sprites;
-import io.mvpstarter.sample.data.model.Statistic;
+import io.mvpstarter.sample.data.model.response.NamedResource;
+import io.mvpstarter.sample.data.model.response.Pokemon;
+import io.mvpstarter.sample.data.model.response.Sprites;
+import io.mvpstarter.sample.data.model.response.Statistic;
 
 /**
  * Factory class that makes instances of data models with random field values. The aim of this class

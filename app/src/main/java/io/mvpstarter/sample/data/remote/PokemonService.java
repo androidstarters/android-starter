@@ -1,7 +1,7 @@
 package io.mvpstarter.sample.data.remote;
 
-import io.mvpstarter.sample.data.model.Pokemon;
-import io.mvpstarter.sample.data.model.PokemonListResponse;
+import io.mvpstarter.sample.data.model.response.Pokemon;
+import io.mvpstarter.sample.data.model.response.PokemonListResponse;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

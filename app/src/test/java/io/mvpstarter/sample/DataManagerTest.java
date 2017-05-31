@@ -10,10 +10,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import io.mvpstarter.sample.common.TestDataFactory;
-import io.mvpstarter.sample.data.model.NamedResource;
-import io.mvpstarter.sample.data.model.Pokemon;
-import io.mvpstarter.sample.data.model.PokemonListResponse;
-import io.mvpstarter.sample.data.remote.DataManager;
+import io.mvpstarter.sample.data.model.response.NamedResource;
+import io.mvpstarter.sample.data.model.response.Pokemon;
+import io.mvpstarter.sample.data.model.response.PokemonListResponse;
+import io.mvpstarter.sample.data.DataManager;
 import io.mvpstarter.sample.data.remote.PokemonService;
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule;
 import io.reactivex.Single;

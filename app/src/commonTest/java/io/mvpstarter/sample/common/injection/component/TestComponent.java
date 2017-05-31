@@ -4,7 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import io.mvpstarter.sample.common.injection.module.ApplicationTestModule;
-import io.mvpstarter.sample.di.component.AppComponent;
+import io.mvpstarter.sample.injection.component.AppComponent;
 
 @Singleton
 @Component(modules = ApplicationTestModule.class)

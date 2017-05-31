@@ -2,9 +2,9 @@ package io.mvpstarter.sample.features.main;
 
 import javax.inject.Inject;
 
-import io.mvpstarter.sample.common.base.BasePresenter;
-import io.mvpstarter.sample.data.remote.DataManager;
-import io.mvpstarter.sample.di.ConfigPersistent;
+import io.mvpstarter.sample.features.base.BasePresenter;
+import io.mvpstarter.sample.data.DataManager;
+import io.mvpstarter.sample.injection.ConfigPersistent;
 import io.mvpstarter.sample.util.rx.scheduler.SchedulerUtils;
 
 @ConfigPersistent
