@@ -16,7 +16,6 @@ android {
 
     defaultConfig {
         defaultPublishConfig 'debug'
-        publishNonDefault true
 
         applicationId "in.mvpstarter.sample"
         minSdkVersion 19
