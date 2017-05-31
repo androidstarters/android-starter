@@ -46,15 +46,15 @@ public abstract class BaseFragment extends Fragment {
             Timber.i("Creating new ConfigPersistentComponent id=%d", fragmentId);
             configPersistentComponent =
                     DaggerConfigPersistentComponent.builder()
-                            .appComponent(
-                                    MvpStarterApplication.get(getActivity()).getComponent())
+                            .appComponent(MvpStarterApplication.get(getActivity()).getComponent())
                             .build();
             componentsArray.put(fragmentId, configPersistentComponent);
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", fragmentId);
             configPersistentComponent = componentsArray.get(fragmentId);
         }
-        FragmentComponent fragmentComponent = configPersistentComponent.fragmentComponent(new FragmentModule(this));
+        FragmentComponent fragmentComponent =
+                configPersistentComponent.fragmentComponent(new FragmentModule(this));
         inject(fragmentComponent);
         attachView();
     }

@@ -16,21 +16,18 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import io.mvpstarter.sample.R;
 import io.mvpstarter.sample.features.base.BaseActivity;
-import io.mvpstarter.sample.injection.component.ActivityComponent;
 import io.mvpstarter.sample.features.common.ErrorView;
 import io.mvpstarter.sample.features.detail.DetailActivity;
+import io.mvpstarter.sample.injection.component.ActivityComponent;
 import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
-public class MainActivity extends BaseActivity
-        implements MainMvpView, ErrorView.ErrorListener {
+public class MainActivity extends BaseActivity implements MainMvpView, ErrorView.ErrorListener {
 
     private static final int POKEMON_COUNT = 20;
 
-    @Inject
-    PokemonAdapter pokemonAdapter;
-    @Inject
-    MainPresenter mainPresenter;
+    @Inject PokemonAdapter pokemonAdapter;
+    @Inject MainPresenter mainPresenter;
 
     @BindView(R.id.view_error)
     ErrorView errorView;
@@ -57,7 +54,6 @@ public class MainActivity extends BaseActivity
         swipeRefreshLayout.setColorSchemeResources(R.color.white);
         swipeRefreshLayout.setOnRefreshListener(() -> mainPresenter.getPokemon(POKEMON_COUNT));
 
-
         pokemonRecycler.setLayoutManager(new LinearLayoutManager(this));
         pokemonRecycler.setAdapter(pokemonAdapter);
         pokemonClicked();
@@ -67,14 +63,20 @@ public class MainActivity extends BaseActivity
     }
 
     private void pokemonClicked() {
-        Disposable disposable = pokemonAdapter.getPokemonClick()
-                .subscribe(pokemon -> startActivity(DetailActivity
-                                .getStartIntent(this, pokemon)),
-                        throwable -> {
-                            Timber.e(throwable, "Pokemon click failed");
-                            Toast.makeText(this, R.string.error_something_bad_happened,
-                                    Toast.LENGTH_LONG).show();
-                        });
+        Disposable disposable =
+                pokemonAdapter
+                        .getPokemonClick()
+                        .subscribe(
+                                pokemon ->
+                                        startActivity(DetailActivity.getStartIntent(this, pokemon)),
+                                throwable -> {
+                                    Timber.e(throwable, "Pokemon click failed");
+                                    Toast.makeText(
+                                                    this,
+                                                    R.string.error_something_bad_happened,
+                                                    Toast.LENGTH_LONG)
+                                            .show();
+                                });
         mainPresenter.addDisposable(disposable);
     }
 

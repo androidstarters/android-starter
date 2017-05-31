@@ -55,7 +55,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             Timber.i("Reusing ConfigPersistentComponent id=%d", activityId);
             configPersistentComponent = componentsArray.get(activityId);
         }
-        ActivityComponent activityComponent = configPersistentComponent.activityComponent(new ActivityModule(this));
+        ActivityComponent activityComponent =
+                configPersistentComponent.activityComponent(new ActivityModule(this));
         inject(activityComponent);
         attachView();
     }
@@ -94,5 +95,4 @@ public abstract class BaseActivity extends AppCompatActivity {
         detachPresenter();
         super.onDestroy();
     }
-
 }

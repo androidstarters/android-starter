@@ -20,5 +20,4 @@ public interface AppComponent {
     Application application();
 
     DataManager apiManager();
-
 }

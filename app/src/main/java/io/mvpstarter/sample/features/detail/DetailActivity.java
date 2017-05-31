@@ -16,12 +16,12 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import io.mvpstarter.sample.R;
-import io.mvpstarter.sample.features.base.BaseActivity;
 import io.mvpstarter.sample.data.model.response.Pokemon;
 import io.mvpstarter.sample.data.model.response.Statistic;
-import io.mvpstarter.sample.injection.component.ActivityComponent;
+import io.mvpstarter.sample.features.base.BaseActivity;
 import io.mvpstarter.sample.features.common.ErrorView;
 import io.mvpstarter.sample.features.detail.widget.StatisticView;
+import io.mvpstarter.sample.injection.component.ActivityComponent;
 import timber.log.Timber;
 
 public class DetailActivity extends BaseActivity implements DetailMvpView, ErrorView.ErrorListener {
@@ -127,5 +127,4 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
     public void onReloadData() {
         detailPresenter.getPokemon(pokemonName);
     }
-
 }

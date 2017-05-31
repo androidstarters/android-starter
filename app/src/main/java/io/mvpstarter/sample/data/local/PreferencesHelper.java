@@ -42,7 +42,6 @@ public class PreferencesHelper {
         return preferences.getInt(key, -1);
     }
 
-
     public void clear() {
         preferences.edit().clear().apply();
     }
