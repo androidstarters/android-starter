@@ -8,5 +8,4 @@ import io.mvpstarter.sample.injection.component.AppComponent;
 
 @Singleton
 @Component(modules = ApplicationTestModule.class)
-public interface TestComponent extends AppComponent {
-}
+public interface TestComponent extends AppComponent {}

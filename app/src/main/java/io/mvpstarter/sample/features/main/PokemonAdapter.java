@@ -61,6 +61,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
 
         @BindView(R.id.text_name)
         TextView nameText;
+
         private String pokemon;
 
         PokemonViewHolder(View itemView) {
@@ -71,8 +72,9 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
 
         void onBind(String pokemon) {
             this.pokemon = pokemon;
-            nameText.setText(String
-                    .format("%s%s", pokemon.substring(0, 1).toUpperCase(), pokemon.substring(1)));
+            nameText.setText(
+                    String.format(
+                            "%s%s", pokemon.substring(0, 1).toUpperCase(), pokemon.substring(1)));
         }
     }
 }

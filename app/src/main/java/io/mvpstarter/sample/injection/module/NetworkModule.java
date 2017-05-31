@@ -17,10 +17,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
-/**
- * Created by shivam on 29/5/17.
- */
-
+/** Created by shivam on 29/5/17. */
 @Module
 public class NetworkModule {
 
@@ -41,8 +38,8 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor,
-                                     StethoInterceptor stethoInterceptor) {
+    OkHttpClient provideOkHttpClient(
+            HttpLoggingInterceptor httpLoggingInterceptor, StethoInterceptor stethoInterceptor) {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
         if (BuildConfig.DEBUG) {
             httpClientBuilder.addInterceptor(httpLoggingInterceptor);
