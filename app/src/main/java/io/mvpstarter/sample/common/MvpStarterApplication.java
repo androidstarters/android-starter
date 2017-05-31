@@ -1,4 +1,4 @@
-package io.mvpstarter.sample;
+package io.mvpstarter.sample.common;
 
 import android.app.Application;
 import android.content.Context;
@@ -6,14 +6,15 @@ import android.content.Context;
 import com.facebook.stetho.Stetho;
 import com.squareup.leakcanary.LeakCanary;
 
-import io.mvpstarter.sample.injection.component.ApplicationComponent;
-import io.mvpstarter.sample.injection.component.DaggerApplicationComponent;
-import io.mvpstarter.sample.injection.module.ApplicationModule;
+import io.mvpstarter.sample.BuildConfig;
+import io.mvpstarter.sample.di.component.AppComponent;
+import io.mvpstarter.sample.di.component.DaggerAppComponent;
+import io.mvpstarter.sample.di.module.AppModule;
 import timber.log.Timber;
 
 public class MvpStarterApplication extends Application {
 
-    ApplicationComponent applicationComponent;
+    AppComponent appComponent;
 
     public static MvpStarterApplication get(Context context) {
         return (MvpStarterApplication) context.getApplicationContext();
@@ -30,18 +31,18 @@ public class MvpStarterApplication extends Application {
         }
     }
 
-    public ApplicationComponent getComponent() {
-        if (applicationComponent == null) {
-            applicationComponent =
-                    DaggerApplicationComponent.builder()
-                            .applicationModule(new ApplicationModule(this))
+    public AppComponent getComponent() {
+        if (appComponent == null) {
+            appComponent =
+                    DaggerAppComponent.builder()
+                            .appModule(new AppModule(this))
                             .build();
         }
-        return applicationComponent;
+        return appComponent;
     }
 
     // Needed to replace the component with a test specific one
-    public void setComponent(ApplicationComponent applicationComponent) {
-        this.applicationComponent = applicationComponent;
+    public void setComponent(AppComponent appComponent) {
+        this.appComponent = appComponent;
     }
 }

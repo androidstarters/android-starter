@@ -59,6 +59,6 @@ public class DetailActivityTest {
     }
 
     public void stubDataManagerGetPokemon(Single<Pokemon> single) {
-        when(component.getMockDataManager().getPokemon(anyString())).thenReturn(single);
+        when(component.getMockApiManager().getPokemon(anyString())).thenReturn(single);
     }
 }

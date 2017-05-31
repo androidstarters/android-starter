@@ -9,8 +9,8 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import io.mvpstarter.sample.common.TestDataFactory;
-import io.mvpstarter.sample.data.DataManager;
 import io.mvpstarter.sample.data.model.Pokemon;
+import io.mvpstarter.sample.data.remote.DataManager;
 import io.mvpstarter.sample.features.detail.DetailMvpView;
 import io.mvpstarter.sample.features.detail.DetailPresenter;
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule;
@@ -24,15 +24,19 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/** Created by ravindra on 24/12/16. */
+/**
+ * Created by ravindra on 24/12/16.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class DetailPresenterTest {
 
     @Rule
     public final RxSchedulersOverrideRule overrideSchedulersRule = new RxSchedulersOverrideRule();
 
-    @Mock DetailMvpView mockDetailMvpView;
-    @Mock DataManager mockDataManager;
+    @Mock
+    DetailMvpView mockDetailMvpView;
+    @Mock
+    DataManager mockDataManager;
     private DetailPresenter detailPresenter;
 
     @Before

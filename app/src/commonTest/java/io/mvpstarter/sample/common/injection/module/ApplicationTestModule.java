@@ -7,9 +7,9 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import io.mvpstarter.sample.data.DataManager;
-import io.mvpstarter.sample.data.remote.MvpStarterService;
-import io.mvpstarter.sample.injection.ApplicationContext;
+import io.mvpstarter.sample.data.remote.DataManager;
+import io.mvpstarter.sample.data.remote.PokemonService;
+import io.mvpstarter.sample.di.ApplicationContext;
 
 import static org.mockito.Mockito.mock;
 
@@ -46,7 +46,7 @@ public class ApplicationTestModule {
 
     @Provides
     @Singleton
-    MvpStarterService provideMvpBoilerplateService() {
-        return mock(MvpStarterService.class);
+    PokemonService provideMvpBoilerplateService() {
+        return mock(PokemonService.class);
     }
 }

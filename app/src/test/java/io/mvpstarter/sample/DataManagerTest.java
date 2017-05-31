@@ -10,11 +10,11 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import io.mvpstarter.sample.common.TestDataFactory;
-import io.mvpstarter.sample.data.DataManager;
 import io.mvpstarter.sample.data.model.NamedResource;
 import io.mvpstarter.sample.data.model.Pokemon;
 import io.mvpstarter.sample.data.model.PokemonListResponse;
-import io.mvpstarter.sample.data.remote.MvpStarterService;
+import io.mvpstarter.sample.data.remote.DataManager;
+import io.mvpstarter.sample.data.remote.PokemonService;
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule;
 import io.reactivex.Single;
 
@@ -22,18 +22,24 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+/**
+ * Created by shivam on 29/5/17.
+ */
+
 @RunWith(MockitoJUnitRunner.class)
 public class DataManagerTest {
 
     @Rule
     public final RxSchedulersOverrideRule overrideSchedulersRule = new RxSchedulersOverrideRule();
 
-    @Mock MvpStarterService mockMvpStarterService;
+    @Mock
+    private PokemonService mockPokemonService;
+
     private DataManager dataManager;
 
     @Before
     public void setUp() {
-        dataManager = new DataManager(mockMvpStarterService);
+        dataManager = new DataManager(mockPokemonService);
     }
 
     @Test
@@ -42,7 +48,7 @@ public class DataManagerTest {
         PokemonListResponse pokemonListResponse = new PokemonListResponse();
         pokemonListResponse.results = namedResourceList;
 
-        when(mockMvpStarterService.getPokemonList(anyInt()))
+        when(mockPokemonService.getPokemonList(anyInt()))
                 .thenReturn(Single.just(pokemonListResponse));
 
         dataManager.getPokemonList(10)
@@ -55,8 +61,9 @@ public class DataManagerTest {
     public void getPokemonCompletesAndEmitsPokemon() {
         String name = "charmander";
         Pokemon pokemon = TestDataFactory.makePokemon(name);
-        when(mockMvpStarterService.getPokemon(anyString())).thenReturn(Single.just(pokemon));
+        when(mockPokemonService.getPokemon(anyString())).thenReturn(Single.just(pokemon));
 
         dataManager.getPokemon(name).test().assertComplete().assertValue(pokemon);
     }
+
 }

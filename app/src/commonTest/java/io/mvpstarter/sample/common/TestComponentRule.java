@@ -6,11 +6,10 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import io.mvpstarter.sample.MvpStarterApplication;
 import io.mvpstarter.sample.common.injection.component.DaggerTestComponent;
 import io.mvpstarter.sample.common.injection.component.TestComponent;
 import io.mvpstarter.sample.common.injection.module.ApplicationTestModule;
-import io.mvpstarter.sample.data.DataManager;
+import io.mvpstarter.sample.data.remote.DataManager;
 
 /**
  * Test rule that creates and sets a Dagger TestComponent into the application overriding the
@@ -40,8 +39,8 @@ public class TestComponentRule implements TestRule {
         return context;
     }
 
-    public DataManager getMockDataManager() {
-        return testComponent.dataManager();
+    public DataManager getMockApiManager() {
+        return testComponent.apiManager();
     }
 
     @Override
