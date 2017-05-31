@@ -14,8 +14,8 @@ import java.util.List;
 
 import io.mvpstarter.sample.common.TestComponentRule;
 import io.mvpstarter.sample.common.TestDataFactory;
-import io.mvpstarter.sample.data.model.NamedResource;
-import io.mvpstarter.sample.data.model.Pokemon;
+import io.mvpstarter.sample.data.model.response.NamedResource;
+import io.mvpstarter.sample.data.model.response.Pokemon;
 import io.mvpstarter.sample.features.main.MainActivity;
 import io.mvpstarter.sample.util.ErrorTestUtil;
 import io.reactivex.Single;

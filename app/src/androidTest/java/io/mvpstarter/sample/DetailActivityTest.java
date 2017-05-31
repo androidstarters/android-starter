@@ -12,8 +12,8 @@ import org.junit.runner.RunWith;
 
 import io.mvpstarter.sample.common.TestComponentRule;
 import io.mvpstarter.sample.common.TestDataFactory;
-import io.mvpstarter.sample.data.model.Pokemon;
-import io.mvpstarter.sample.data.model.Statistic;
+import io.mvpstarter.sample.data.model.response.Pokemon;
+import io.mvpstarter.sample.data.model.response.Statistic;
 import io.mvpstarter.sample.features.detail.DetailActivity;
 import io.mvpstarter.sample.util.ErrorTestUtil;
 import io.reactivex.Single;

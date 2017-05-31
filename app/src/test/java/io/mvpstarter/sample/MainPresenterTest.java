@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import io.mvpstarter.sample.common.TestDataFactory;
-import io.mvpstarter.sample.data.remote.DataManager;
+import io.mvpstarter.sample.data.DataManager;
 import io.mvpstarter.sample.features.main.MainMvpView;
 import io.mvpstarter.sample.features.main.MainPresenter;
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule;

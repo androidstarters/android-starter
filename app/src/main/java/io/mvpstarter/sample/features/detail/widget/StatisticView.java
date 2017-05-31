@@ -13,7 +13,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.mvpstarter.sample.R;
-import io.mvpstarter.sample.data.model.Statistic;
+import io.mvpstarter.sample.data.model.response.Statistic;
 
 public class StatisticView extends RelativeLayout {
 
