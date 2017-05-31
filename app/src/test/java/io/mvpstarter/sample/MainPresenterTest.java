@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import io.mvpstarter.sample.common.TestDataFactory;
-import io.mvpstarter.sample.data.DataManager;
+import io.mvpstarter.sample.data.remote.DataManager;
 import io.mvpstarter.sample.features.main.MainMvpView;
 import io.mvpstarter.sample.features.main.MainPresenter;
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule;
@@ -25,15 +25,19 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/** Created by ravindra on 24/12/16. */
+/**
+ * Created by ravindra on 24/12/16.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class MainPresenterTest {
 
     @Rule
     public final RxSchedulersOverrideRule overrideSchedulersRule = new RxSchedulersOverrideRule();
 
-    @Mock MainMvpView mockMainMvpView;
-    @Mock DataManager mockDataManager;
+    @Mock
+    MainMvpView mockMainMvpView;
+    @Mock
+    DataManager mockDataManager;
     private MainPresenter mainPresenter;
 
     @Before

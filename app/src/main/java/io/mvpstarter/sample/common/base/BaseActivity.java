@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.features.base;
+package io.mvpstarter.sample.common.base;
 
 import android.os.Bundle;
 import android.support.v4.util.LongSparseArray;
@@ -8,11 +8,11 @@ import android.view.MenuItem;
 import java.util.concurrent.atomic.AtomicLong;
 
 import butterknife.ButterKnife;
-import io.mvpstarter.sample.MvpStarterApplication;
-import io.mvpstarter.sample.injection.component.ActivityComponent;
-import io.mvpstarter.sample.injection.component.ConfigPersistentComponent;
-import io.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent;
-import io.mvpstarter.sample.injection.module.ActivityModule;
+import io.mvpstarter.sample.common.MvpStarterApplication;
+import io.mvpstarter.sample.di.component.ActivityComponent;
+import io.mvpstarter.sample.di.component.ConfigPersistentComponent;
+import io.mvpstarter.sample.di.component.DaggerConfigPersistentComponent;
+import io.mvpstarter.sample.di.module.ActivityModule;
 import timber.log.Timber;
 
 /**
@@ -29,7 +29,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static final LongSparseArray<ConfigPersistentComponent> componentsArray =
             new LongSparseArray<>();
 
-    private ActivityComponent activityComponent;
     private long activityId;
 
     @Override
@@ -37,6 +36,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
         ButterKnife.bind(this);
+
         // Create the ActivityComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
         activityId =
@@ -48,18 +48,36 @@ public abstract class BaseActivity extends AppCompatActivity {
             Timber.i("Creating new ConfigPersistentComponent id=%d", activityId);
             configPersistentComponent =
                     DaggerConfigPersistentComponent.builder()
-                            .applicationComponent(MvpStarterApplication.get(this).getComponent())
+                            .appComponent(MvpStarterApplication.get(this).getComponent())
                             .build();
             componentsArray.put(activityId, configPersistentComponent);
         } else {
             Timber.i("Reusing ConfigPersistentComponent id=%d", activityId);
             configPersistentComponent = componentsArray.get(activityId);
         }
-        activityComponent = configPersistentComponent.activityComponent(new ActivityModule(this));
-        activityComponent.inject(this);
+        ActivityComponent activityComponent = configPersistentComponent.activityComponent(new ActivityModule(this));
+        inject(activityComponent);
+        attachView();
     }
 
-    public abstract int getLayout();
+    protected abstract int getLayout();
+
+    protected abstract void inject(ActivityComponent activityComponent);
+
+    protected abstract void attachView();
+
+    protected abstract void detachPresenter();
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -73,21 +91,8 @@ public abstract class BaseActivity extends AppCompatActivity {
             Timber.i("Clearing ConfigPersistentComponent id=%d", activityId);
             componentsArray.remove(activityId);
         }
+        detachPresenter();
         super.onDestroy();
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    public ActivityComponent activityComponent() {
-        return activityComponent;
-    }
 }

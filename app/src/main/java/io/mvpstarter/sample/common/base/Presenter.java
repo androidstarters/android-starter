@@ -1,4 +1,4 @@
-package io.mvpstarter.sample.features.base;
+package io.mvpstarter.sample.common.base;
 
 /**
  * Every presenter in the app must either implement this interface or extend BasePresenter

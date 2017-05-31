@@ -1,11 +1,11 @@
-package io.mvpstarter.sample.injection.module;
+package io.mvpstarter.sample.di.module;
 
 import android.app.Activity;
 import android.content.Context;
 
 import dagger.Module;
 import dagger.Provides;
-import io.mvpstarter.sample.injection.ActivityContext;
+import io.mvpstarter.sample.di.ActivityContext;
 
 @Module
 public class ActivityModule {
