@@ -9,7 +9,7 @@ import org.junit.runners.model.Statement;
 import io.mvpstarter.sample.common.injection.component.DaggerTestComponent;
 import io.mvpstarter.sample.common.injection.component.TestComponent;
 import io.mvpstarter.sample.common.injection.module.ApplicationTestModule;
-import io.mvpstarter.sample.data.remote.ApiManager;
+import io.mvpstarter.sample.data.remote.DataManager;
 
 /**
  * Test rule that creates and sets a Dagger TestComponent into the application overriding the
@@ -39,7 +39,7 @@ public class TestComponentRule implements TestRule {
         return context;
     }
 
-    public ApiManager getMockApiManager() {
+    public DataManager getMockApiManager() {
         return testComponent.apiManager();
     }
 

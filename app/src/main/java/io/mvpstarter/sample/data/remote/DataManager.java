@@ -11,19 +11,18 @@ import io.reactivex.Single;
 /**
  * Created by shivam on 29/5/17.
  */
-
 @Singleton
-public class ApiManager {
+public class DataManager {
 
-    private PokemonApi pokemonApi;
+    private PokemonService pokemonService;
 
     @Inject
-    public ApiManager(PokemonApi pokemonApi) {
-        this.pokemonApi = pokemonApi;
+    public DataManager(PokemonService pokemonService) {
+        this.pokemonService = pokemonService;
     }
 
     public Single<List<String>> getPokemonList(int limit) {
-        return pokemonApi
+        return pokemonService
                 .getPokemonList(limit)
                 .toObservable()
                 .flatMapIterable(namedResources -> namedResources.results)
@@ -32,7 +31,7 @@ public class ApiManager {
     }
 
     public Single<Pokemon> getPokemon(String name) {
-        return pokemonApi.getPokemon(name);
+        return pokemonService.getPokemon(name);
     }
 
 }

@@ -12,7 +12,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.List;
 
 import io.mvpstarter.sample.common.TestDataFactory;
-import io.mvpstarter.sample.data.remote.ApiManager;
+import io.mvpstarter.sample.data.remote.DataManager;
 import io.mvpstarter.sample.features.main.MainMvpView;
 import io.mvpstarter.sample.features.main.MainPresenter;
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule;
@@ -37,12 +37,12 @@ public class MainPresenterTest {
     @Mock
     MainMvpView mockMainMvpView;
     @Mock
-    ApiManager mockApiManager;
+    DataManager mockDataManager;
     private MainPresenter mainPresenter;
 
     @Before
     public void setUp() {
-        mainPresenter = new MainPresenter(mockApiManager);
+        mainPresenter = new MainPresenter(mockDataManager);
         mainPresenter.attachView(mockMainMvpView);
     }
 
@@ -54,7 +54,7 @@ public class MainPresenterTest {
     @Test
     public void getPokemonReturnsPokemonNames() throws Exception {
         List<String> pokemonList = TestDataFactory.makePokemonNamesList(10);
-        when(mockApiManager.getPokemonList(10)).thenReturn(Single.just(pokemonList));
+        when(mockDataManager.getPokemonList(10)).thenReturn(Single.just(pokemonList));
 
         mainPresenter.getPokemon(10);
 
@@ -65,7 +65,7 @@ public class MainPresenterTest {
 
     @Test
     public void getPokemonReturnsError() throws Exception {
-        when(mockApiManager.getPokemonList(10)).thenReturn(Single.error(new RuntimeException()));
+        when(mockDataManager.getPokemonList(10)).thenReturn(Single.error(new RuntimeException()));
 
         mainPresenter.getPokemon(10);
 

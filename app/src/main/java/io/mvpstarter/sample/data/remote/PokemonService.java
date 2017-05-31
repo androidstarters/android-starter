@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
-public interface PokemonApi {
+public interface PokemonService {
 
     @GET("pokemon")
     Single<PokemonListResponse> getPokemonList(@Query("limit") int limit);
