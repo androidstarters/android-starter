@@ -6,7 +6,7 @@ import android.content.Context;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import io.mvpstarter.sample.data.remote.ApiManager;
+import io.mvpstarter.sample.data.remote.DataManager;
 import io.mvpstarter.sample.di.ApplicationContext;
 import io.mvpstarter.sample.di.module.AppModule;
 
@@ -19,6 +19,6 @@ public interface AppComponent {
 
     Application application();
 
-    ApiManager apiManager();
+    DataManager apiManager();
 
 }

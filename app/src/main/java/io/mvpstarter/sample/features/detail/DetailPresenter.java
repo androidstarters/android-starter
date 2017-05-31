@@ -4,18 +4,18 @@ import javax.inject.Inject;
 
 import io.mvpstarter.sample.common.base.BasePresenter;
 import io.mvpstarter.sample.data.model.Statistic;
-import io.mvpstarter.sample.data.remote.ApiManager;
+import io.mvpstarter.sample.data.remote.DataManager;
 import io.mvpstarter.sample.di.ConfigPersistent;
 import io.mvpstarter.sample.util.rx.scheduler.SchedulerUtils;
 
 @ConfigPersistent
 public class DetailPresenter extends BasePresenter<DetailMvpView> {
 
-    private final ApiManager apiManager;
+    private final DataManager dataManager;
 
     @Inject
-    public DetailPresenter(ApiManager apiManager) {
-        this.apiManager = apiManager;
+    public DetailPresenter(DataManager dataManager) {
+        this.dataManager = dataManager;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class DetailPresenter extends BasePresenter<DetailMvpView> {
     public void getPokemon(String name) {
         checkViewAttached();
         getView().showProgress(true);
-        apiManager
+        dataManager
                 .getPokemon(name)
                 .compose(SchedulerUtils.ioToMain())
                 .subscribe(

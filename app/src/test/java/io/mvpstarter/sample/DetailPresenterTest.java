@@ -10,7 +10,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import io.mvpstarter.sample.common.TestDataFactory;
 import io.mvpstarter.sample.data.model.Pokemon;
-import io.mvpstarter.sample.data.remote.ApiManager;
+import io.mvpstarter.sample.data.remote.DataManager;
 import io.mvpstarter.sample.features.detail.DetailMvpView;
 import io.mvpstarter.sample.features.detail.DetailPresenter;
 import io.mvpstarter.sample.util.RxSchedulersOverrideRule;
@@ -36,12 +36,12 @@ public class DetailPresenterTest {
     @Mock
     DetailMvpView mockDetailMvpView;
     @Mock
-    ApiManager mockApiManager;
+    DataManager mockDataManager;
     private DetailPresenter detailPresenter;
 
     @Before
     public void setUp() {
-        detailPresenter = new DetailPresenter(mockApiManager);
+        detailPresenter = new DetailPresenter(mockDataManager);
         detailPresenter.attachView(mockDetailMvpView);
     }
 
@@ -53,7 +53,7 @@ public class DetailPresenterTest {
     @Test
     public void getPokemonDetailReturnsPokemon() throws Exception {
         Pokemon pokemon = TestDataFactory.makePokemon("id");
-        when(mockApiManager.getPokemon(anyString())).thenReturn(Single.just(pokemon));
+        when(mockDataManager.getPokemon(anyString())).thenReturn(Single.just(pokemon));
 
         detailPresenter.getPokemon(anyString());
 
@@ -64,7 +64,7 @@ public class DetailPresenterTest {
 
     @Test
     public void getPokemonDetailReturnsError() throws Exception {
-        when(mockApiManager.getPokemon("id")).thenReturn(Single.error(new RuntimeException()));
+        when(mockDataManager.getPokemon("id")).thenReturn(Single.error(new RuntimeException()));
 
         detailPresenter.getPokemon("id");
 

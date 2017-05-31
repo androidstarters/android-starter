@@ -4,7 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import io.mvpstarter.sample.data.remote.PokemonApi;
+import io.mvpstarter.sample.data.remote.PokemonService;
 import retrofit2.Retrofit;
 
 /**
@@ -16,7 +16,7 @@ public class ApiModule {
 
     @Provides
     @Singleton
-    PokemonApi providePokemonApi(Retrofit retrofit) {
-        return retrofit.create(PokemonApi.class);
+    PokemonService providePokemonApi(Retrofit retrofit) {
+        return retrofit.create(PokemonService.class);
     }
 }

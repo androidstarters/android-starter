@@ -7,8 +7,8 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import io.mvpstarter.sample.data.remote.ApiManager;
-import io.mvpstarter.sample.data.remote.PokemonApi;
+import io.mvpstarter.sample.data.remote.DataManager;
+import io.mvpstarter.sample.data.remote.PokemonService;
 import io.mvpstarter.sample.di.ApplicationContext;
 
 import static org.mockito.Mockito.mock;
@@ -40,13 +40,13 @@ public class ApplicationTestModule {
     /** *********** MOCKS *********** */
     @Provides
     @Singleton
-    ApiManager providesDataManager() {
-        return mock(ApiManager.class);
+    DataManager providesDataManager() {
+        return mock(DataManager.class);
     }
 
     @Provides
     @Singleton
-    PokemonApi provideMvpBoilerplateService() {
-        return mock(PokemonApi.class);
+    PokemonService provideMvpBoilerplateService() {
+        return mock(PokemonService.class);
     }
 }
