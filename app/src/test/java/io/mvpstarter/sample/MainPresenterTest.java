@@ -56,7 +56,7 @@ public class MainPresenterTest {
 
         verify(mockMainMvpView, times(2)).showProgress(anyBoolean());
         verify(mockMainMvpView).showPokemon(pokemonList);
-        verify(mockMainMvpView, never()).showError(new RuntimeException());
+        verify(mockMainMvpView, never()).showError(any(Throwable.class));
     }
 
     @Test
