@@ -55,7 +55,7 @@ public class DetailPresenterTest {
 
         verify(mockDetailMvpView, times(2)).showProgress(anyBoolean());
         verify(mockDetailMvpView).showPokemon(pokemon);
-        verify(mockDetailMvpView, never()).showError(new RuntimeException());
+        verify(mockDetailMvpView, never()).showError(any(Throwable.class));
     }
 
     @Test
