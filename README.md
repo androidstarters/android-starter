@@ -84,6 +84,11 @@ To ensure that your code is valid and stable use check:
 ./gradlew check
 ```
 
+### Created & Maintained By
+[Ravindra Kumar](https://github.com/ravidsrk) ([@ravidsrk](https://www.twitter.com/ravidsrk))
+
+> If you found this repo helpful or you learned something from the source code and want to thank me, consider [buying me a cup of](https://www.paypal.me/ravidsrk) :coffee:
+
 ## License
 ```
 MIT License
