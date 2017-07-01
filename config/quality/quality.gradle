@@ -19,7 +19,7 @@ findbugs {
 }
 
 dependencies {
-    checkstyle 'com.puppycrawl.tools:checkstyle:7.8.1'
+    checkstyle 'com.puppycrawl.tools:checkstyle:7.8.2'
 }
 
 def qualityConfigDir = "$project.rootDir/config/quality";
