@@ -13,4 +13,5 @@ import io.mvpstarter.sample.injection.component.ConfigPersistentComponent;
  */
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ConfigPersistent {}
+public @interface ConfigPersistent {
+}

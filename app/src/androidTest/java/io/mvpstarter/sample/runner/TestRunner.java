@@ -6,7 +6,9 @@ import android.content.Context;
 import io.appflate.restmock.android.RESTMockTestRunner;
 import io.mvpstarter.sample.MvpStarterApplication;
 
-/** Created by ravindra on 4/2/17. */
+/**
+ * Created by ravindra on 4/2/17.
+ */
 public class TestRunner extends RESTMockTestRunner {
 
     @Override

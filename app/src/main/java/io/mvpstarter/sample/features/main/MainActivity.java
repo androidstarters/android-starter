@@ -26,8 +26,10 @@ public class MainActivity extends BaseActivity implements MainMvpView, ErrorView
 
     private static final int POKEMON_COUNT = 20;
 
-    @Inject PokemonAdapter pokemonAdapter;
-    @Inject MainPresenter mainPresenter;
+    @Inject
+    PokemonAdapter pokemonAdapter;
+    @Inject
+    MainPresenter mainPresenter;
 
     @BindView(R.id.view_error)
     ErrorView errorView;
@@ -72,9 +74,9 @@ public class MainActivity extends BaseActivity implements MainMvpView, ErrorView
                                 throwable -> {
                                     Timber.e(throwable, "Pokemon click failed");
                                     Toast.makeText(
-                                                    this,
-                                                    R.string.error_something_bad_happened,
-                                                    Toast.LENGTH_LONG)
+                                            this,
+                                            R.string.error_something_bad_happened,
+                                            Toast.LENGTH_LONG)
                                             .show();
                                 });
         mainPresenter.addDisposable(disposable);

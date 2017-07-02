@@ -37,7 +37,9 @@ public class ApplicationTestModule {
         return mApplication;
     }
 
-    /** *********** MOCKS *********** */
+    /**
+     * ********** MOCKS ***********
+     */
     @Provides
     @Singleton
     DataManager providesDataManager() {
