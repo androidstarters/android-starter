@@ -1,9 +1,12 @@
 package io.mvpstarter.sample.injection.module;
 
+import android.content.Context;
+
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.readystatesoftware.chuck.ChuckInterceptor;
 
 import javax.inject.Singleton;
 
@@ -17,9 +20,17 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import timber.log.Timber;
 
-/** Created by shivam on 29/5/17. */
+/**
+ * Created by shivam on 29/5/17.
+ */
 @Module
 public class NetworkModule {
+
+    private final Context context;
+
+    public NetworkModule(final Context context) {
+        this.context = context;
+    }
 
     protected String getBaseUrl() {
         return BuildConfig.POKEAPI_API_URL;
@@ -39,9 +50,11 @@ public class NetworkModule {
     @Provides
     @Singleton
     OkHttpClient provideOkHttpClient(
-            HttpLoggingInterceptor httpLoggingInterceptor, StethoInterceptor stethoInterceptor) {
+            HttpLoggingInterceptor httpLoggingInterceptor, StethoInterceptor stethoInterceptor,
+            ChuckInterceptor chuckInterceptor) {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
         if (BuildConfig.DEBUG) {
+            httpClientBuilder.addInterceptor(chuckInterceptor);
             httpClientBuilder.addInterceptor(httpLoggingInterceptor);
             httpClientBuilder.addNetworkInterceptor(stethoInterceptor);
         }
@@ -61,6 +74,12 @@ public class NetworkModule {
     @Singleton
     StethoInterceptor provideStethoInterceptor() {
         return new StethoInterceptor();
+    }
+
+    @Provides
+    @Singleton
+    ChuckInterceptor provideChuckInterceptor() {
+        return new ChuckInterceptor(context);
     }
 
     @Provides
