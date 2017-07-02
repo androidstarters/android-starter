@@ -28,7 +28,8 @@ public class DetailActivity extends BaseActivity implements DetailMvpView, Error
 
     public static final String EXTRA_POKEMON_NAME = "EXTRA_POKEMON_NAME";
 
-    @Inject DetailPresenter detailPresenter;
+    @Inject
+    DetailPresenter detailPresenter;
 
     @BindView(R.id.view_error)
     ErrorView errorView;

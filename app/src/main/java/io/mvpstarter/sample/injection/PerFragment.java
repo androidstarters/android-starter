@@ -11,4 +11,5 @@ import javax.inject.Scope;
  */
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
-public @interface PerFragment {}
+public @interface PerFragment {
+}

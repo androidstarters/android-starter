@@ -25,15 +25,19 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/** Created by ravindra on 24/12/16. */
+/**
+ * Created by ravindra on 24/12/16.
+ */
 @RunWith(MockitoJUnitRunner.class)
 public class MainPresenterTest {
 
     @Rule
     public final RxSchedulersOverrideRule overrideSchedulersRule = new RxSchedulersOverrideRule();
 
-    @Mock MainMvpView mockMainMvpView;
-    @Mock DataManager mockDataManager;
+    @Mock
+    MainMvpView mockMainMvpView;
+    @Mock
+    DataManager mockDataManager;
     private MainPresenter mainPresenter;
 
     @Before

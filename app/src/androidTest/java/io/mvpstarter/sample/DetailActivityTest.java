@@ -35,7 +35,8 @@ public class DetailActivityTest {
 
     // TestComponentRule needs to go first to make sure the Dagger ApplicationTestComponent is set
     // in the Application before any Activity is launched.
-    @Rule public TestRule chain = RuleChain.outerRule(component).around(main);
+    @Rule
+    public TestRule chain = RuleChain.outerRule(component).around(main);
 
     @Test
     public void checkPokemonDisplays() {

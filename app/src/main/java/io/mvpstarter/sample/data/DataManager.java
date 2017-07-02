@@ -9,7 +9,9 @@ import io.mvpstarter.sample.data.model.response.Pokemon;
 import io.mvpstarter.sample.data.remote.PokemonService;
 import io.reactivex.Single;
 
-/** Created by shivam on 29/5/17. */
+/**
+ * Created by shivam on 29/5/17.
+ */
 @Singleton
 public class DataManager {
 

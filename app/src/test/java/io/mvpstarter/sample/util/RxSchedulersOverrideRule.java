@@ -11,6 +11,7 @@ import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.functions.Function;
 import io.reactivex.plugins.RxJavaPlugins;
 import io.reactivex.schedulers.Schedulers;
+
 /**
  * NOTE: You MUST use this rule in every test class that targets app code that uses RxJava. Even
  * when that code doesn't use any scheduler. The RxJava {@link Schedulers} class is setup once and
@@ -18,7 +19,7 @@ import io.reactivex.schedulers.Schedulers;
  * this rule runs it may be too late to override the schedulers. This is really not ideal but
  * currently there isn't a better approach. More info here:
  * https://github.com/ReactiveX/RxJava/issues/2297
- *
+ * <p>
  * <p>This rule registers SchedulerHooks for RxJava and RxAndroid to ensure that subscriptions
  * always subscribeOn and observeOn Schedulers.immediate(). Warning, this rule will reset
  * RxAndroidPlugins and RxJavaPlugins before and after each test so if the application code uses
