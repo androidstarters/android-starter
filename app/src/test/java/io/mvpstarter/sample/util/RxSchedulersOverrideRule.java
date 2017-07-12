@@ -28,7 +28,7 @@ import io.reactivex.schedulers.Schedulers;
 public class RxSchedulersOverrideRule implements TestRule {
 
     public final Scheduler SCHEDULER_INSTANCE = Schedulers.trampoline();
-    private Function<Scheduler, Scheduler> mSchedulerFunction = scheduler -> SCHEDULER_INSTANCE;
+    private Function<Scheduler, Scheduler> schedulerFunction = scheduler -> SCHEDULER_INSTANCE;
     private Function<Callable<Scheduler>, Scheduler> schedulerFunctionLazy =
             schedulerCallable -> SCHEDULER_INSTANCE;
 
@@ -41,9 +41,9 @@ public class RxSchedulersOverrideRule implements TestRule {
                 RxAndroidPlugins.setInitMainThreadSchedulerHandler(schedulerFunctionLazy);
 
                 RxJavaPlugins.reset();
-                RxJavaPlugins.setIoSchedulerHandler(mSchedulerFunction);
-                RxJavaPlugins.setNewThreadSchedulerHandler(mSchedulerFunction);
-                RxJavaPlugins.setComputationSchedulerHandler(mSchedulerFunction);
+                RxJavaPlugins.setIoSchedulerHandler(schedulerFunction);
+                RxJavaPlugins.setNewThreadSchedulerHandler(schedulerFunction);
+                RxJavaPlugins.setComputationSchedulerHandler(schedulerFunction);
 
                 base.evaluate();
 

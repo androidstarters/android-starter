@@ -19,22 +19,22 @@ import static org.mockito.Mockito.mock;
  */
 @Module
 public class ApplicationTestModule {
-    private final Application mApplication;
+    private final Application application;
 
     public ApplicationTestModule(Application application) {
-        mApplication = application;
+        this.application = application;
     }
 
     @Provides
     @Singleton
     Application provideApplication() {
-        return mApplication;
+        return application;
     }
 
     @Provides
     @ApplicationContext
     Context provideContext() {
-        return mApplication;
+        return application;
     }
 
     /**

@@ -10,28 +10,28 @@ import rx.plugins.RxJavaObservableExecutionHook;
  */
 public class RxIdlingExecutionHook extends RxJavaObservableExecutionHook {
 
-    private RxIdlingResource mRxIdlingResource;
+    private RxIdlingResource rxIdlingResource;
 
     public RxIdlingExecutionHook(RxIdlingResource rxIdlingResource) {
-        mRxIdlingResource = rxIdlingResource;
+        this.rxIdlingResource = rxIdlingResource;
     }
 
     @Override
     public <T> Observable.OnSubscribe<T> onSubscribeStart(
             Observable<? extends T> observableInstance, Observable.OnSubscribe<T> onSubscribe) {
-        mRxIdlingResource.incrementActiveSubscriptionsCount();
+        rxIdlingResource.incrementActiveSubscriptionsCount();
         return super.onSubscribeStart(observableInstance, onSubscribe);
     }
 
     @Override
     public <T> Throwable onSubscribeError(Throwable e) {
-        mRxIdlingResource.decrementActiveSubscriptionsCount();
+        rxIdlingResource.decrementActiveSubscriptionsCount();
         return super.onSubscribeError(e);
     }
 
     @Override
     public <T> Subscription onSubscribeReturn(Subscription subscription) {
-        mRxIdlingResource.decrementActiveSubscriptionsCount();
+        rxIdlingResource.decrementActiveSubscriptionsCount();
         return super.onSubscribeReturn(subscription);
     }
 }
