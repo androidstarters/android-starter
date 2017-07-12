@@ -1,6 +1,6 @@
 # AndroidMvpStarter [![Build Status](https://travis-ci.org/androidstarters/android-starter.svg?branch=master)](https://travis-ci.org/androidstarters/android-starter)
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android%20MVP%20Starter-blue.svg?style=flat)](https://android-arsenal.com/details/3/5232)
+[![Backers on Open Collective](https://opencollective.com/android-starter/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/android-starter/sponsors/badge.svg)](#sponsors) [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Android%20MVP%20Starter-blue.svg?style=flat)](https://android-arsenal.com/details/3/5232)
 [![Join the chat at https://gitter.im/android-starter/Lobby](https://badges.gitter.im/android-starter/Lobby.svg)](https://gitter.im/android-starter/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 An MVP Boilerplate to save me having to create the same project over from scratch every time! :)
@@ -88,6 +88,36 @@ To ensure that your code is valid and stable use check:
 [Ravindra Kumar](https://github.com/ravidsrk) ([@ravidsrk](https://www.twitter.com/ravidsrk))
 
 > If you found this repo helpful or you learned something from the source code and want to thank me, consider [buying me a cup of](https://www.paypal.me/ravidsrk) :coffee:
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute]](CONTRIBUTING.md).
+<a href="graphs/contributors"><img src="https://opencollective.com/android-starter/contributors.svg?width=890" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/android-starter#backer)]
+
+<a href="https://opencollective.com/android-starter#backers" target="_blank"><img src="https://opencollective.com/android-starter/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/android-starter#sponsor)]
+
+<a href="https://opencollective.com/android-starter/sponsor/0/website" target="_blank"><img src="https://opencollective.com/android-starter/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/android-starter/sponsor/1/website" target="_blank"><img src="https://opencollective.com/android-starter/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/android-starter/sponsor/2/website" target="_blank"><img src="https://opencollective.com/android-starter/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/android-starter/sponsor/3/website" target="_blank"><img src="https://opencollective.com/android-starter/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/android-starter/sponsor/4/website" target="_blank"><img src="https://opencollective.com/android-starter/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/android-starter/sponsor/5/website" target="_blank"><img src="https://opencollective.com/android-starter/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/android-starter/sponsor/6/website" target="_blank"><img src="https://opencollective.com/android-starter/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/android-starter/sponsor/7/website" target="_blank"><img src="https://opencollective.com/android-starter/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/android-starter/sponsor/8/website" target="_blank"><img src="https://opencollective.com/android-starter/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/android-starter/sponsor/9/website" target="_blank"><img src="https://opencollective.com/android-starter/sponsor/9/avatar.svg"></a>
+
+
 
 ## License
 ```
