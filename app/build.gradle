@@ -14,6 +14,10 @@ android {
         javaMaxHeapSize "8g"
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     defaultConfig {
         defaultPublishConfig 'debug'
 
