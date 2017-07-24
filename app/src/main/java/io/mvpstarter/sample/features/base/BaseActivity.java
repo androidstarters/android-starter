@@ -31,11 +31,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private long activityId;
 
+    private Unbinder unbinder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
 
         // Create the ActivityComponent and reuses cached ConfigPersistentComponent if this is
         // being called after a configuration change.
@@ -92,6 +94,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             Timber.i("Clearing ConfigPersistentComponent id=%d", activityId);
             componentsArray.remove(activityId);
         }
+        unbinder.unbind();
         detachPresenter();
         super.onDestroy();
     }
