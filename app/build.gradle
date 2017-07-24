@@ -72,6 +72,7 @@ android {
 
     testOptions {
         unitTests {
+            includeAndroidResources = true
             returnDefaultValues = true
             all {
                 jacoco {
@@ -114,10 +115,10 @@ dependencies {
     debugImplementation 'com.readystatesoftware.chuck:library:1.0.4'
     releaseImplementation 'com.readystatesoftware.chuck:library-no-op:1.0.4'
 
-    debugImplementation('com.github.ajitsing:sherlock:1.0.2@aar') {
+    debugImplementation('com.github.ajitsing:sherlock:1.0.3@aar') {
         transitive = true
     }
-    releaseImplementation ('com.github.ajitsing:sherlock-no-op:1.0.2@aar')
+    releaseImplementation ('com.github.ajitsing:sherlock-no-op:1.0.3@aar')
 
     implementation 'com.tspoon.traceur:traceur:1.0.1'
 
@@ -141,4 +142,8 @@ dependencies {
 // Log out test results to console
 tasks.matching { it instanceof Test }.all {
     testLogging.events = ["failed", "passed", "skipped"]
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-Xlint:deprecation" << "-Werror"
 }
