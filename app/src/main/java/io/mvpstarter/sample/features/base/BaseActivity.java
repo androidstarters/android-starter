@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import java.util.concurrent.atomic.AtomicLong;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import io.mvpstarter.sample.MvpStarterApplication;
 import io.mvpstarter.sample.injection.component.ActivityComponent;
 import io.mvpstarter.sample.injection.component.ConfigPersistentComponent;
