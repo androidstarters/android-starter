@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import java.util.concurrent.atomic.AtomicLong;
 
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import io.mvpstarter.sample.MvpStarterApplication;
 import io.mvpstarter.sample.injection.component.ConfigPersistentComponent;
 import io.mvpstarter.sample.injection.component.DaggerConfigPersistentComponent;
@@ -31,6 +32,8 @@ public abstract class BaseFragment extends Fragment {
     private static final AtomicLong NEXT_ID = new AtomicLong(0);
 
     private long fragmentId;
+
+    private Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,7 +69,7 @@ public abstract class BaseFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
-        ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -90,6 +93,7 @@ public abstract class BaseFragment extends Fragment {
             Timber.i("Clearing ConfigPersistentComponent id=%d", fragmentId);
             componentsArray.remove(fragmentId);
         }
+        unbinder.unbind();
         detachPresenter();
         super.onDestroy();
     }

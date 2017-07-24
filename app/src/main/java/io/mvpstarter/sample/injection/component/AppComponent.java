@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import io.mvpstarter.sample.data.DataManager;
+import io.mvpstarter.sample.data.local.PreferencesHelper;
 import io.mvpstarter.sample.injection.ApplicationContext;
 import io.mvpstarter.sample.injection.module.AppModule;
 
@@ -20,4 +21,6 @@ public interface AppComponent {
     Application application();
 
     DataManager apiManager();
+
+    PreferencesHelper prefHelper();
 }
