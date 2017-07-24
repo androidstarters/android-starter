@@ -15,28 +15,27 @@ apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
 findbugs {
-  toolVersion = '3.0.0'
+  toolVersion = '3.0.1'
 }
 
 dependencies {
-    checkstyle 'com.puppycrawl.tools:checkstyle:7.8.2'
+    checkstyle 'com.puppycrawl.tools:checkstyle:8.0'
 }
 
 def qualityConfigDir = "$project.rootDir/config/quality";
-def reportsDir = "$project.buildDir/reports"
 
 check.dependsOn 'checkstyle', 'findbugs', 'pmd'
 
 task checkstyle(type: Checkstyle, group: 'Verification', description: 'Runs code style checks') {
     configFile file("$qualityConfigDir/checkstyle/checkstyle-config.xml")
+    ignoreFailures false
     source 'src'
     include '**/*.java'
+    showViolations true
 
     reports {
         xml.enabled = true
-        xml {
-            destination "$reportsDir/checkstyle/checkstyle.xml"
-        }
+        html.enabled = true
     }
 
     classpath = files( )
@@ -60,12 +59,6 @@ task findbugs(type: FindBugs,
     reports {
         xml.enabled = true
         html.enabled = false
-        xml {
-            destination "$reportsDir/findbugs/findbugs.xml"
-        }
-        html {
-            destination "$reportsDir/findbugs/findbugs.html"
-        }
     }
 
     classpath = files()
@@ -80,15 +73,10 @@ task pmd(type: Pmd, group: 'Verification', description: 'Inspect sourcecode for 
     source 'src'
     include '**/*.java'
     exclude '**/gen/**'
+    exclude '**/resources/**'
 
     reports {
         xml.enabled = true
         html.enabled = true
-        xml {
-            destination "$reportsDir/pmd/pmd.xml"
-        }
-        html {
-            destination "$reportsDir/pmd/pmd.html"
-        }
     }
 }
