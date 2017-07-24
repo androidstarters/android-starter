@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import io.mvpstarter.sample.injection.ApplicationContext;
@@ -30,7 +32,7 @@ public class AppModule {
     }
 
     @Provides
-    @ApplicationContext
+    @Singleton
     SharedPreferences provideSharedPreference(@ApplicationContext Context context) {
         return context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
     }
