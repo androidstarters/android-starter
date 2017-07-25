@@ -20,7 +20,7 @@ android {
         applicationId "io.mvpstarter.sample"
         minSdkVersion 19
         targetSdkVersion 26
-        testInstrumentationRunner "${applicationId}.runner.RxAndroidJUnitRunner"
+        testInstrumentationRunner "io.mvpstarter.sample.runner.RxAndroidJUnitRunner"
         versionCode 1000
         // Major -> Millions, Minor -> Thousands, Bugfix -> Hundreds. E.g 1.3.72 == 1,003,072
         versionName '0.1.0'
@@ -143,4 +143,8 @@ dependencies {
 tasks.matching { it instanceof Test }.all {
     testLogging.events = ["failed", "passed", "skipped"]
 }
+
+//tasks.withType(JavaCompile) {
+//    options.compilerArgs << "-Xlint:deprecation" << "-Werror"
+//}
 

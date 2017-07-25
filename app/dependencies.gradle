@@ -64,12 +64,16 @@ ext {
     ] + junit + mockito + restMock
 
     androidTests = [
-            mockitoAndroid: "org.mockito:mockito-android:2.8.47",
-            espressoCore   : "com.android.support.test.espresso:espresso-core:$versions.espresso",
-            espressoContrib: "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
-            espressoIntents: "com.android.support.test.espresso:espresso-intents:$versions.espresso",
-            testRunner     : "com.android.support.test:runner:$versions.espressoRunner",
-            testRules      : "com.android.support.test:rules:$versions.espressoRunner",
+            mockitoAndroid      : "org.mockito:mockito-android:2.8.47",
+            espressoCore        : "com.android.support.test.espresso:espresso-core:$versions.espresso",
+            espressoContrib     : "com.android.support.test.espresso:espresso-contrib:$versions.espresso",
+            espressoIntents     : "com.android.support.test.espresso:espresso-intents:$versions.espresso",
+            espressoAcc         : "com.android.support.test.espresso:espresso-accessibility:$versions.espresso",
+            espressoIdle        : "com.android.support.test.espresso:espresso-idling-resource:$versions.espresso",
+            espressoConcurrent  : "com.android.support.test.espresso.idling:idling-concurrent:$versions.espresso",
+            espressoNetIdle     : "com.android.support.test.espresso.idling:idling-net:$versions.espresso",
+            testRunner          : "com.android.support.test:runner:$versions.espressoRunner",
+            testRules           : "com.android.support.test:rules:$versions.espressoRunner",
     ] + mockito + restMock
 
     supportLibs = supportDeps.values()
