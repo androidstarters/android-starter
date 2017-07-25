@@ -38,7 +38,7 @@ public class MvpStarterApplication extends Application {
     public AppComponent getComponent() {
         if (appComponent == null) {
             appComponent = DaggerAppComponent.builder()
-                    .networkModule(new NetworkModule(this))
+                    .networkModule(new NetworkModule(this, BuildConfig.POKEAPI_API_URL))
                     .appModule(new AppModule(this))
                     .build();
         }

@@ -27,20 +27,18 @@ import timber.log.Timber;
 public class NetworkModule {
 
     private final Context context;
+    private final String baseUrl;
 
-    public NetworkModule(final Context context) {
+    public NetworkModule(final Context context, String baseUrl) {
         this.context = context;
-    }
-
-    protected String getBaseUrl() {
-        return BuildConfig.POKEAPI_API_URL;
+        this.baseUrl = baseUrl;
     }
 
     @Provides
     @Singleton
     Retrofit provideRetrofit(OkHttpClient okHttpClient, Gson gson) {
         return new Retrofit.Builder()
-                .baseUrl(getBaseUrl())
+                .baseUrl(baseUrl)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -49,9 +47,9 @@ public class NetworkModule {
 
     @Provides
     @Singleton
-    OkHttpClient provideOkHttpClient(
-            HttpLoggingInterceptor httpLoggingInterceptor, StethoInterceptor stethoInterceptor,
-            ChuckInterceptor chuckInterceptor) {
+    OkHttpClient provideOkHttpClient(HttpLoggingInterceptor httpLoggingInterceptor,
+                                     StethoInterceptor stethoInterceptor,
+                                     ChuckInterceptor chuckInterceptor) {
         OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
         if (BuildConfig.DEBUG) {
             httpClientBuilder.addInterceptor(chuckInterceptor);
