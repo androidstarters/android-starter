@@ -1,7 +1,7 @@
 package io.mvpstarter.sample.runner;
 
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.contrib.AccessibilityChecks;
+import android.support.test.espresso.IdlingRegistry;
+import android.support.test.espresso.accessibility.AccessibilityChecks;
 import android.support.test.runner.AndroidJUnitRunner;
 import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry;
 import android.support.test.runner.lifecycle.Stage;
@@ -23,7 +23,7 @@ public class RxAndroidJUnitRunner extends AndroidJUnitRunner {
 
     @Override
     public void onStart() {
-        enableAccessibilityChecks();
+//        enableAccessibilityChecks();
         dismissLockAndTurnScreenOn();
         monitorRxSchedulerForIdleness();
         super.onStart();
@@ -50,7 +50,7 @@ public class RxAndroidJUnitRunner extends AndroidJUnitRunner {
 
     private static RxIdlingScheduler convertToIdlingScheduler(Scheduler scheduler) {
         RxIdlingScheduler rxIdlingResource = new RxIdlingScheduler(scheduler);
-        Espresso.registerIdlingResources(rxIdlingResource.getCountingIdlingResource());
+        IdlingRegistry.getInstance().register(rxIdlingResource.getCountingIdlingResource());
         return rxIdlingResource;
     }
 }

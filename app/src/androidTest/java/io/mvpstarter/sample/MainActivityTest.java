@@ -35,20 +35,20 @@ public class MainActivityTest {
 
     private final TestComponentRule componentRule =
             new TestComponentRule(InstrumentationRegistry.getTargetContext());
-    private final ActivityTestRule<MainActivity> mainActivityActivityTestRule =
+    private final ActivityTestRule<MainActivity> mainActivityTestRule =
             new ActivityTestRule<>(MainActivity.class, false, false);
 
     // TestComponentRule needs to go first to make sure the Dagger ApplicationTestComponent is set
     // in the Application before any Activity is launched.
     @Rule
-    public TestRule chain = RuleChain.outerRule(componentRule).around(mainActivityActivityTestRule);
+    public TestRule chain = RuleChain.outerRule(componentRule).around(mainActivityTestRule);
 
     @Test
     public void checkPokemonsDisplay() {
         List<NamedResource> namedResourceList = TestDataFactory.makeNamedResourceList(5);
         List<String> pokemonList = TestDataFactory.makePokemonNameList(namedResourceList);
         stubDataManagerGetPokemonList(Single.just(pokemonList));
-        mainActivityActivityTestRule.launchActivity(null);
+        mainActivityTestRule.launchActivity(null);
 
         for (NamedResource pokemonName : namedResourceList) {
             onView(withText(pokemonName.name)).check(matches(isDisplayed()));
@@ -61,7 +61,7 @@ public class MainActivityTest {
         List<String> pokemonList = TestDataFactory.makePokemonNameList(namedResourceList);
         stubDataManagerGetPokemonList(Single.just(pokemonList));
         stubDataManagerGetPokemon(Single.just(TestDataFactory.makePokemon("id")));
-        mainActivityActivityTestRule.launchActivity(null);
+        mainActivityTestRule.launchActivity(null);
 
         onView(withText(pokemonList.get(0))).perform(click());
 
@@ -71,7 +71,7 @@ public class MainActivityTest {
     @Test
     public void checkErrorViewDisplays() {
         stubDataManagerGetPokemonList(Single.error(new RuntimeException()));
-        mainActivityActivityTestRule.launchActivity(null);
+        mainActivityTestRule.launchActivity(null);
         ErrorTestUtil.checkErrorViewsDisplay();
     }
 
