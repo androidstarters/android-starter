@@ -14,7 +14,7 @@ fi
 # If we have a service key for the GCloud Cli then use remote testing otherwise run local tests
 if [ -n "${GCLOUD_SERVICE_KEY+1}" ]; then
     ./gradlew --no-daemon --info assembleAndroidTest -PdisablePreDex
-    scripts/remoteTesting.sh $report_location
+    scripts/remoteTesting.sh ${report_location}
 else
     ./gradlew --no-daemon --info testDebugUnitTest -PdisablePreDex
 fi

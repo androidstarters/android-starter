@@ -31,23 +31,3 @@ test:
     # Run all build, test and reporting steps in ci.sh
     - scripts/ci.sh $CIRCLE_TEST_REPORTS
 
-  post:
-    # Collect up all the test reports into $CIRCLE_TEST_REPORTS.
-    # Note, Gradle updates may change the paths/names of these reports. Double check these paths whenever Gradle is updated.
-
-    # checkstyle
-    - mkdir $CIRCLE_TEST_REPORTS/checkstyle
-    - cp -r app/build/reports/checkstyle $CIRCLE_TEST_REPORTS/checkstyle
-    # lint
-    - mkdir $CIRCLE_TEST_REPORTS/lint
-    - find app/build/reports -maxdepth 1 -name "*.html" -exec cp {} $CIRCLE_TEST_REPORTS/lint/ \;
-    - find app/build/reports -maxdepth 1 -name "*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/lint/ \;
-    # unit tests
-    - mkdir $CIRCLE_TEST_REPORTS/unitTests
-    - cp -r app/build/reports/tests $CIRCLE_TEST_REPORTS/unitTests
-    # jacoco
-    - mkdir $CIRCLE_TEST_REPORTS/jacoco
-    - cp -r app/build/reports/jacoco/testDebugUnitTestCoverage/html $CIRCLE_TEST_REPORTS/jacoco
-    - cp -r app/build/reports/jacoco/testReleaseUnitTestCoverage/html $CIRCLE_TEST_REPORTS/jacoco
-    # release build
-    - cp app/build/outputs/apk/app-release.apk $CIRCLE_ARTIFACTS
