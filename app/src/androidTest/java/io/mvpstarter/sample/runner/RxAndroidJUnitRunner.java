@@ -45,7 +45,8 @@ public class RxAndroidJUnitRunner extends AndroidJUnitRunner {
     }
 
     private void monitorRxSchedulerForIdleness() {
-        RxJavaPlugins.setInitIoSchedulerHandler(schedulerCallable -> convertToIdlingScheduler(schedulerCallable.call()));
+        RxJavaPlugins.setInitIoSchedulerHandler(schedulerCallable
+                -> convertToIdlingScheduler(schedulerCallable.call()));
     }
 
     private static RxIdlingScheduler convertToIdlingScheduler(Scheduler scheduler) {
