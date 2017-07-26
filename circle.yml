@@ -6,9 +6,6 @@ machine:
 
 dependencies:
   pre:
-    # Decode encrypted secrets and release keys
-    - openssl aes-256-cbc -d -in ci-keys.cipher -k $CI_SECRETS_KEY >> ~/.circlerc
-    - openssl aes-256-cbc -d -in release.keystore.cipher -out release.keystore -k $CI_SECRETS_KEY
     # Ensure we have the correct Android build environment
     - if [ ! -e $ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS ]; then echo y | android update sdk --no-ui --all --filter build-tools-$ANDROID_BUILD_TOOLS; fi
     - if [ ! -e $ANDROID_HOME/platforms/android-$ANDROID_PLATFORM ]; then echo y | android update sdk --no-ui --all --filter "android-${ANDROID_PLATFORM}"; fi
