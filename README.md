@@ -84,6 +84,32 @@ To ensure that your code is valid and stable use check:
 ./gradlew check
 ```
 
+## Jacoco Reports
+
+#### Generate Jacoco coverage reports for the Debug build. Only unit tests.
+
+```sh
+app:testDebugUnitTestCoverage
+```
+
+#### Generate Jacoco coverage reports for the Release build. Only unit tests.
+
+```sh
+app:testReleaseUnitTestCoverage
+```
+
+#### Generate Jacoco coverage reports for the Debug build. Both unit and espresso tests.
+
+```sh
+app:unitAndEspressoDebugTestCoverage
+```
+
+#### Generate Jacoco coverage reports for the Release build. Both unit and espresso tests.
+
+```sh
+app:unitAndEspressoReleaseTestCoverage
+```
+
 ### Created & Maintained By
 [Ravindra Kumar](https://github.com/ravidsrk) ([@ravidsrk](https://www.twitter.com/ravidsrk))
 

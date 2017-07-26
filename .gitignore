@@ -8,3 +8,4 @@
 *.iml
 */build
 fastlane
+.tasks.cache.json
