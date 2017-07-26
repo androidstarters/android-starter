@@ -1,27 +1,25 @@
 package io.mvpstarter.sample.features.detail.widget;
 
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.databinding.BaseObservable;
+import android.databinding.Bindable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.ProgressBar;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import io.mvpstarter.sample.R;
+import io.mvpstarter.sample.BR;
 import io.mvpstarter.sample.data.model.response.Statistic;
+import io.mvpstarter.sample.databinding.ViewStatisticBinding;
+import io.mvpstarter.sample.util.Utils;
 
 public class StatisticView extends RelativeLayout {
 
-    @BindView(R.id.text_name)
-    TextView nameText;
-
-    @BindView(R.id.progress_stat)
-    ProgressBar statProgress;
+    private ViewStatisticBinding mViewStatisticBinding;
 
     public StatisticView(Context context) {
         super(context);
@@ -45,15 +43,54 @@ public class StatisticView extends RelativeLayout {
     }
 
     private void init() {
-        LayoutInflater.from(getContext()).inflate(R.layout.view_statistic, this);
-        ButterKnife.bind(this);
+        mViewStatisticBinding = ViewStatisticBinding.inflate(LayoutInflater.from(getContext()),
+                this, false);
+        /* Adding view to viewGroup */
+        addView(mViewStatisticBinding.getRoot());
     }
 
     @SuppressLint("SetTextI18n")
     public void setStat(Statistic statistic) {
-        nameText.setText(
-                statistic.stat.name.substring(0, 1).toUpperCase()
-                        + statistic.stat.name.substring(1));
-        statProgress.setProgress(statistic.baseStat);
+        StatisticModel statisticModel = new StatisticModel();
+        statisticModel.setName(Utils.toCameCase(statistic.stat.name));
+        statisticModel.setProgress(statistic.baseStat);
+        mViewStatisticBinding.setStatistics(statisticModel);
+    }
+
+    //TODO: Need to move this class to appropriate package.
+    public class StatisticModel extends BaseObservable {
+
+        private String name;
+        private int progress;
+
+        @Bindable
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+            notifyPropertyChanged(BR.name);
+        }
+
+        @Bindable
+        public int getProgress() {
+            return progress;
+        }
+
+        // This method will update the progressBar's
+        // progress with the help of ValueAnimators.
+        public void setProgress(int value) {
+            ValueAnimator progressAnimator = ValueAnimator.ofInt(0, value);
+            progressAnimator.addUpdateListener((valueAnimator) -> {
+                    progress = (int) valueAnimator.getAnimatedValue();
+                    // Update view as progress updates
+                    notifyPropertyChanged(BR.progress);
+                }
+            );
+            progressAnimator.setDuration(250);
+            progressAnimator.setInterpolator(new DecelerateInterpolator());
+            progressAnimator.start();
+        }
     }
 }
