@@ -10,14 +10,11 @@ fi
 
 ./gradlew --no-daemon --info clean
 ./gradlew --no-daemon --info checkstyle -PdisablePreDex
-./gradlew --no-daemon --info build countDebugDexMethods -PdisablePreDex
 
 # If we have a service key for the GCloud Cli then use remote testing otherwise run local tests
 if [ -n "${GCLOUD_SERVICE_KEY+1}" ]; then
     ./gradlew --no-daemon --info assembleAndroidTest -PdisablePreDex
     scripts/remoteTesting.sh $report_location
 else
-    ./gradlew --no-daemon --info connectedAndroidTest -PdisablePreDex
-    mkdir $report_location/connectedAndroidTest
-    cp -r app/build/reports/androidTests/connected $report_location/connectedAndroidTest
+    ./gradlew --no-daemon --info testDebugUnitTest -PdisablePreDex
 fi
