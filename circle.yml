@@ -1,0 +1,56 @@
+machine:
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+    ANDROID_BUILD_TOOLS: 26.0.1
+    ANDROID_PLATFORM: 26
+
+dependencies:
+  pre:
+    # Decode encrypted secrets and release keys
+    - openssl aes-256-cbc -d -in ci-keys.cipher -k $CI_SECRETS_KEY >> ~/.circlerc
+    - openssl aes-256-cbc -d -in release.keystore.cipher -out release.keystore -k $CI_SECRETS_KEY
+    # Ensure we have the correct Android build environment
+    - if [ ! -e $ANDROID_HOME/build-tools/$ANDROID_BUILD_TOOLS ]; then echo y | android update sdk --no-ui --all --filter build-tools-$ANDROID_BUILD_TOOLS; fi
+    - if [ ! -e $ANDROID_HOME/platforms/android-$ANDROID_PLATFORM ]; then echo y | android update sdk --no-ui --all --filter "android-${ANDROID_PLATFORM}"; fi
+    # Ensure we have the latest Android support libraries
+    - echo y | android update sdk -u -a -t extra-android-m2repository
+    - echo y | android update sdk -u -a -t extra-google-m2repository
+
+  cache_directories:
+    # Cache the build environment to speed up further builds
+    - /usr/local/android-sdk-linux/build-tools/26.0.1
+    - /usr/local/android-sdk-linux/platforms/android-26
+    - /usr/local/android-sdk-linux/tools
+
+test:
+  pre:
+    # Start and Android emulator and wait for boot if we don't have Firebase cloud testing integrated
+    - if [ ! -n "${GCLOUD_SERVICE_KEY+1}" ]; then emulator -avd circleci-android24 -no-audio -no-window; fi:
+                background: true
+                parallel: true
+    - if [ ! -n "${GCLOUD_SERVICE_KEY+1}" ]; then circle-android wait-for-boot; fi
+
+  override:
+    # Run all build, test and reporting steps in ci.sh
+    - scripts/ci.sh $CIRCLE_TEST_REPORTS
+
+  post:
+    # Collect up all the test reports into $CIRCLE_TEST_REPORTS.
+    # Note, Gradle updates may change the paths/names of these reports. Double check these paths whenever Gradle is updated.
+
+    # checkstyle
+    - mkdir $CIRCLE_TEST_REPORTS/checkstyle
+    - cp -r app/build/reports/checkstyle $CIRCLE_TEST_REPORTS/checkstyle
+    # lint
+    - mkdir $CIRCLE_TEST_REPORTS/lint
+    - find app/build/reports -maxdepth 1 -name "*.html" -exec cp {} $CIRCLE_TEST_REPORTS/lint/ \;
+    - find app/build/reports -maxdepth 1 -name "*.xml" -exec cp {} $CIRCLE_TEST_REPORTS/lint/ \;
+    # unit tests
+    - mkdir $CIRCLE_TEST_REPORTS/unitTests
+    - cp -r app/build/reports/tests $CIRCLE_TEST_REPORTS/unitTests
+    # jacoco
+    - mkdir $CIRCLE_TEST_REPORTS/jacoco
+    - cp -r app/build/reports/jacoco/testDebugUnitTestCoverage/html $CIRCLE_TEST_REPORTS/jacoco
+    - cp -r app/build/reports/jacoco/testReleaseUnitTestCoverage/html $CIRCLE_TEST_REPORTS/jacoco
+    # release build
+    - cp app/build/outputs/apk/app-release.apk $CIRCLE_ARTIFACTS
