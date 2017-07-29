@@ -3,7 +3,7 @@
 
     <data>
 
-        <import type="io.mvpstarter.sample.features.detail.widget.StatisticView.StatisticModel" />
+        <import type="io.mvpstarter.sample.features.detail.widget.StatisticModel" />
 
         <variable
             name="statistics"
