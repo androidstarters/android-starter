@@ -1,7 +1,7 @@
 ext {
     versions = [
             support         : "26.0.0",
-            firebase        : '11.0.2',
+            firebase        : '11.0.4',
             okHttp          : "3.8.1",
             retrofit        : '2.3.0',
             dagger          : '2.11',
@@ -13,7 +13,7 @@ ext {
             traceur         : '1.0.1',
             stetho          : '1.5.0',
             timber          : '4.5.1',
-            glide           : '4.0.0-RC1',
+            glide           : '4.0.0',
             sherlock        : '1.0.3@aar',
 
             espresso        : '3.0.0',
@@ -22,7 +22,7 @@ ext {
             restMock        : '0.2.2',
             mockito         : '2.8.47',
             junit           : '4.12',
-            robolectric     : '3.3.2',
+            robolectric     : '3.4',
             assertj         : '1.1.1'
 
     ]
