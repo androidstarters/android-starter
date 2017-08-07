@@ -116,10 +116,6 @@ dependencies {
     debugImplementation debugLibs
     releaseImplementation releaseLibs
 
-    implementation(glideOkhttp) {
-        exclude group: 'glide-parent'
-    }
-
     debugImplementation(sherlock) {
         transitive = true
     }
