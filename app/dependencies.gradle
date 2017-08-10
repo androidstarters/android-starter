@@ -117,7 +117,7 @@ ext {
     supportLibs = supportDeps.values()
     networkLibs = retrofit.values() + okHttp.values()
     rxJavaLibs = rxJava.values()
-    otherLibs = [butterKnife, timber, dagger, glide]
+    otherLibs = [butterKnife, timber, dagger, glide, glideOkhttp]
 
     debugLibs = onlyDebug.values() + leakCannary
     releaseLibs = onlyRelease.values() + leakCannary
