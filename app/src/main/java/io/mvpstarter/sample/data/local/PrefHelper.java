@@ -7,14 +7,14 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
-public class PreferencesHelper {
+public class PrefHelper {
 
     private static final String PREF_FILE_NAME = "mvpstarter_pref_file";
 
     private final SharedPreferences preferences;
 
     @Inject
-    PreferencesHelper(SharedPreferences sharedPreferences) {
+    PrefHelper(SharedPreferences sharedPreferences) {
         preferences = sharedPreferences;
     }
 
