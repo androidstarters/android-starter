@@ -14,6 +14,8 @@ ext {
             stetho          : '1.5.0',
             timber          : '4.5.1',
             glide           : '4.2.0',
+            chuck           : '1.1.0',
+            leakcanary      : '1.5.4',
             sherlock        : '1.0.4@aar',
 
             espresso        : '3.0.1',
@@ -68,12 +70,12 @@ ext {
     ]
 
     onlyDebug = [
-            chuck   : "com.readystatesoftware.chuck:library:1.1.0"
+            chuck   : "com.readystatesoftware.chuck:library:$versions.chuck"
     ]
 
     onlyRelease = [
-            chuckNoOp       : 'com.readystatesoftware.chuck:library-no-op:1.0.4',
-            sherlockNoOp    : 'com.github.ajitsing:sherlock-no-op:1.0.3@aar'
+            chuckNoOp       : "com.readystatesoftware.chuck:library-no-op:$versions.chuck",
+            sherlockNoOp    : "com.github.ajitsing:sherlock-no-op:$versions.sherlock@aar"
     ]
 
     unitTest = [
@@ -99,7 +101,7 @@ ext {
             testRules           : "com.android.support.test:rules:$versions.testRunner"
     ] + mockito + restMock
 
-    leakCannary = "com.squareup.leakcanary:leakcanary-android:1.5.4"
+    leakCannary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
     timber = "com.jakewharton.timber:timber:$versions.timber"
     sherlock = "com.github.ajitsing:sherlock:$versions.sherlock"
 
