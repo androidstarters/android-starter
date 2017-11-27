@@ -75,7 +75,7 @@ ext {
 
     onlyRelease = [
             chuckNoOp       : "com.readystatesoftware.chuck:library-no-op:$versions.chuck",
-            sherlockNoOp    : "com.github.ajitsing:sherlock-no-op:$versions.sherlock@aar"
+            sherlockNoOp    : "com.github.ajitsing:sherlock-no-op:$versions.sherlock"
     ]
 
     unitTest = [
